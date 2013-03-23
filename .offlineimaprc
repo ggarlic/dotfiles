@@ -1,0 +1,47 @@
+[general]
+accounts = gmail, work
+ui = Curses.Blinkenlights
+# ui = Noninteractive.Quiet 
+#
+# 如果啟用此行，則不會輸出任何東西。最適宜cronjobs 在幕後運行了。
+socketimeout = 3
+
+[Account gmail]
+localrepository = gmailLocal
+remoterepository = gmailRemote
+autorefresh = 5
+
+[Account work]
+localrepository = workLocal
+remoterepository = workRemote
+autorefresh = 5
+
+[Repository gmailLocal]
+type = Maildir
+localfolders = ~/.mail/gmail
+
+[Repository gmailRemote]
+type = Gmail
+remotehost = imap.gmail.com
+ssl = yes
+remoteport = 993
+remoteuser = yangbo.ggarlic@gmail.com
+remotepassfile = ~/.mail/passwd
+nametrans = lambda foldername: re.sub (' ', '_', foldername.lower())
+folderfilter = lambda foldername: foldername in ['INBOX','bjtu','diggdigest','linux/arch','linux/shlug','xdlinux','linux/xiyou','Social','Social/appinn','python']
+
+
+[Repository workLocal]
+type = Maildir
+localfolders = ~/.mail/work
+
+[Repository workRemote]
+type = IMAP
+remotehost = imap.exmail.qq.com
+ssl = yes
+remoteport = 993
+remoteuser = yangbo@admaster.com.cn
+remotepassfile = ~/.mail/passwd_work
+nametrans = lambda foldername: re.sub (' ', '_', foldername.lower())
+folderfilter = lambda foldername: foldername in ['INBOX']
+

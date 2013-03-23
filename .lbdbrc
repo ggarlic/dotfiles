@@ -1,0 +1,3 @@
+METHODS="m_muttalias m_abook m_inmail"
+MUTT_DIRECTORY=.mail
+MUTTALIAS_FILES=mutt_aliases

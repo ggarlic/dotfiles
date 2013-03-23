@@ -1,0 +1,44 @@
+#auto save when exit
+set autosave=true
+# All email of a contact are shown in main list
+set show_all_emails=true
+#
+#
+# Which field is to display in main list view as the third column
+# frequently used values:
+# -1 disabled
+# phone Home Phone
+# workphone Work Phone
+# fax Fax
+# mobile Mobile Phone
+# nick Nickname/Alias
+# url URL
+# notes    Notes
+#
+# If extra_column have no data, display this instead
+#
+# Extra field display from which column of screen
+#
+# Command used to start mutt
+set mutt_command=mutt
+#
+# Return all email addresses to a mutt query
+set mutt_return_all_emails=true
+#
+# Command used to print the addressbook
+set print_command=lpr
+#
+# Command used to start the web browser to view a contact's URL
+set www_command=firefox
+#
+# Address formatting used when export or print(eu,uk,us)
+set address_style=us
+#
+# Use only ascii in abook file
+set use_ascii_only=false
+#
+# Drop duplicate address in data?
+set add_email_prevent_duplicates=true
+#
+# Sort addresses sort by which field?
+set sort_field=nick'

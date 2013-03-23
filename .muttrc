@@ -1,0 +1,136 @@
+set editor="vim"
+set pgp_verify_sig=yes                   #在页中不显示 pgp
+set status_on_top                       #在顶部显示状态行
+
+set pager_format="%-10.10i %[!%a %b %d %R]"
+set date_format="!%H:%M %a %d %b     "
+set folder_format="%4C %Z %{%b %d} %?X?%X& ? %-18.18L [%4c] %s"
+set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]----%>-(%P)---"
+set index_format="%4C %Z %{%b %d} %?X?%X& ? %-18.18L [%4c] %s"
+
+set mbox_type=Maildir
+set folder = "~/.mail/"
+set mbox=+gmail/inbox
+set spoolfile=+gmail/inbox
+set postponed=+drafts
+set header_cache="~/.mail/cache/header"
+set mask="!^\\.[^.]"
+unset record
+folder-hook gmail set from=yangbo.ggarlic@gmail.com
+folder-hook work  set from=yangbo@admaster.com.cn
+
+set sendmail="/usr/bin/msmtp"
+set envelope_from=yes
+set use_from=yes
+set realname="yangbo"
+set from=yangbo.ggarlic@gmail.com
+macro generic "<esc>1" ":set from=yangbo.ggarlic@gmail.com"
+macro generic "<esc>2" ":set from=yangbo@admaster.com.cn"
+set include=yes 
+set indent_str="> "
+set signature = ~/.mail/mutt_signature
+
+macro index G "!offlineimap -o -u blinkenlights\n" "Sync Mail"
+set quit=ask-yes
+
+set sort = threads
+set ascii_chars=yes
+set sort_aux = reverse-date
+set pager_stop
+set menu_scroll
+set fast_reply
+set reply_regexp="^(re([\[0-9\]+])*|aw|回复)(:[ \t]|：)"
+set pager_index_lines=10
+set edit_headers=yes
+set wait_key=no
+set beep_new=yes
+set check_new=yes
+set recall=no
+set mime_forward=yes
+set mime_forward_rest=yes
+
+# Charset settings
+set rfc2047_parameters=yes
+
+# ---------------------Key bindings----------------------------------
+bind attach i exit
+bind attach space view-attach
+bind index gg first-entry
+bind index \cf next-page
+bind index \cb previous-page
+bind index j next-entry
+bind index k previous-entry
+bind pager j next-line
+bind pager k previous-line
+bind pager <Up> previous-line
+bind pager <Down> next-line
+bind pager gg top
+bind pager,index L group-reply
+#bind pager G bottom
+bind index \Cx sync-mailbox
+bind editor <space> noop
+#bind index,pager L group-reply
+
+macro index gi "<change-folder>=inbox<enter>" "Go to inbox"
+macro pager gi "<change-folder>=inbox<enter>" "Go to inbox"
+
+#preferred file type order when viewing multipart/alternative emails
+unalternative_order *
+#alternative_order text/enriched text/plain text/html
+alternative_order text/*
+
+#auto view
+set mailcap_path=~/.mail/mailcap
+auto_view  text/html application/pdf application/msword text/enriched text/rtf
+
+# traditional Fwd: subject
+set forw_format="Fwd: %s"
+
+#show tildes at the end fo mail
+set tilde=yes
+#text width
+set wrap=-3
+## 当你按 "t" 或者 "D" 之类的标记操作时，是否自动把光标移动到下一封信件。
+set resolve=yes
+
+#address book related
+set query_command = "lbdbq '%s'"     #;~/bin/mutt_ldap_query.py '%s'"
+macro generic,index,pager A "<shell-escape>abook<return>"
+macro index,pager a "|abook --add-email<return>"
+
+#urlview
+macro pager \cu "|urlview \n"
+
+###headers to show / ignore
+## ignore everything not listed
+ignore *
+## show user agent / mailer
+unignore        User-Agent: X-Agent: X-Mailer: X-Operating-System:
+## show from,date,subject,to,cc,reply-to headers
+unignore        From: Date: Subject: To: Cc: BCC: Reply-to: Mail-Followup-To: X-PGP-Key-ID
+## set the order of headers
+hdr_order       From: Reply-to: To: Cc: Subject: Date: X-PGP-Key-ID User-Agent: X-Mailer: X-Agent: X-Operating-System
+
+#color scheme
+source "/home/ggarlic/.mail/mutt_colors"
+
+###mutt-sidebar
+set sidebar_visible=yes
+#set sidebar_sort=yes
+mailboxes ! =gmail/inbox =work/inbox =gmail/bjtu =gmail/python =gmail/linux.shlug =gmail/social =gmail/xdlinux =gmail/linux.xiyou =gmail/social.appinn =gmail/linux.arch =gmail/diggdigest
+color sidebar_new  magenta default
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+# I don't need these.  just for documentation purposes.  See below.
+# sidebar-scroll-up
+# sidebar-scroll-down
+ 
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+# Remap bounce-message function to "B"
+bind index B bounce-message

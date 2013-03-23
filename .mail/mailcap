@@ -1,0 +1,7 @@
+application/msword; wvHtml --charset=gb2312 %s - |w3m -dump -I gb2312 -T text/html ;copiousoutput
+text/html; w3m -dump -I %{charset} -T text/html ; nametemplate=%s.html; copiousoutput
+image/*; display %s;
+application/octet-stream;   ark %s; test=test -n "$DISPLAY"
+video/*;         mplayer %s > /dev/null
+audio/*;         mplayer %s > /dev/null
+application/pdf; evince %s > /dev/null
