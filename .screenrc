@@ -1,0 +1,56 @@
+#utf8 handling
+defutf8 on
+
+hardstatus alwayslastline
+#hardstatus string '%{=b}%{b}%-w%{.BW}%10>[%n %t]%{-}%+w%< %=%{G}%C%A, %Y-%m-%d'
+hardstatus string "%{= R}[%{y}%l%{r}][ %= %{=b b}%-w%{=rb db}%>%n %t%{-}%+w %=%{= R}][%{G}%c %{M}%D %m-%d%{R}]"
+
+termcapinfo xterm|rxvt ti@:te@
+attrcolor b ".I"    # allow bold colors - necessary for some reason
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+defbce on    # use current bg color for erased chars
+
+autodetach on               # default: on
+altscreen on
+
+version
+startup_message off # default: on
+
+vbell off
+vbell_msg "	Wuff	----	Wuff!!	"
+
+
+##    Keybindings    ##
+
+# F10改标题
+bindkey -k k; title
+# F11左边的tab
+bindkey -k F1 prev
+# F12右边的tab
+bindkey -k F2 next
+
+#set messages timeout tot one second
+msgwait 1
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended"
+
+# =-=-=-=-=-=-=-=-=-=-=Key bindings-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+# # bind F1  to select 1
+# # bind F7  to detach screen session from this terminal
+# # bind F8  to kill current screen window.
+# # bind F9  to create a new screen
+# # bind F10 to rename current screen window
+# # bind F11 to move to previous window
+# # bind F12 to move to next window
+bindkey -k k1 select 1
+bindkey -k k7 detach
+bindkey -k k8 kill
+bindkey -k k9 screen
+bindkey -k k; title
+bindkey -k F1 prev
+bindkey -k F2 next
+
+nethack on
+screen -t mpc 0 ncmpcpp
+screen -t irc 1 irssi
+screen -t mail 2 mutt
+screen
