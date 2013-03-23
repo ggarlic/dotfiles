@@ -1,0 +1,22 @@
+[user]
+    name = yangbo
+    email = yangbo@admaster.com.cn
+[alias]  
+    co = checkout  
+    ci = commit -a  
+    st = status  
+    br = branch  
+    oneline = log --pretty=oneline --since='2 days ago'  
+    onelog = log -p -1  
+    lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[color]  
+    diff = auto  
+    status = auto  
+    branch = auto  
+    grep = auto
+    interactive = auto
+    ui = auto  
+[diff]
+    tool = vimdiff
+[merge]
+    tool = vimdiff
