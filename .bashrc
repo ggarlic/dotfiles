@@ -122,3 +122,7 @@ mkcd(){
 	mkdir -p "$*"
 	cd "$*"
 }
+
+#mail
+export MAILCHECK=240
+export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
