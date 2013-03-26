@@ -873,13 +873,12 @@ mytextclock:buttons( awful.util.table.join(
         run_once("xcompmgr")
         run_once("mpd")
         run_once("mpdscribble")
+        run_once("~/.mybashscripts/./notify.sh")
         -- }}}
 
         autorun = true
         autorunApps = 
         {
-            --"urxvt -e ekg2",
-            --"chromium",
         }
         if autorun then
             for app = 1, #autorunApps do
