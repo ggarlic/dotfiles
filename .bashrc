@@ -61,7 +61,7 @@ export GIT_PS1_SHOWUPSTREAM="auto verbose"
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='\[\033[1;33m\]$(__git_ps1 "(%s)")\[\033[1;31m\]\u\[\033[1;34m\]@\h\[\033[0m\] \[\033[1;36m\]$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed "s: ::g") \[\033[1;35m\]\w\[\033[1;33m\] > \[\033[0m\]'
+    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]\342\234\227\[\033[1;37m\]]\")\[\033[1;31m\]\u\[\033[1;36m\] \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed \"s: ::g\") \[\033[1;35m\]\w \[\033[1;33m\]\$(__git_ps1 \"(%s)\")> \[\033[0m\]"
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
@@ -124,5 +124,5 @@ mkcd(){
 }
 
 #mail
-export MAILCHECK=240
+export MAILCHECK=60
 export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
