@@ -126,3 +126,10 @@ mkcd(){
 #mail
 export MAILCHECK=60
 export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
+
+# better history with multi session
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+#auto cd jump
+shopt -s autocd
