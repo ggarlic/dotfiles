@@ -7,7 +7,7 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 "github
-Bundle 'c9s/colorselector.vim'
+"Bundle 'c9s/colorselector.vim'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
@@ -25,11 +25,11 @@ Bundle 'bufexplorer.zip'
 Bundle 'cecutil'
 Bundle 'closetag.vim'
 Bundle 'Colour-Sampler-Pack'
-Bundle 'Conque-Shell'
+"Bundle 'Conque-Shell'
 Bundle 'c.vim'
 Bundle 'DrawIt'
 Bundle 'fcitx.vim'
-Bundle 'gtk-vim-syntax'
+"Bundle 'gtk-vim-syntax'
 Bundle 'grep.vim'
 Bundle 'matchit.zip'
 Bundle 'OmniCppComplete'
@@ -200,7 +200,7 @@ nmap <F8> :TagbarToggle<CR>
 "showmarks
 let g:showmarks_enable = 0
 "syntastic
-let g:syntastic_python_checker = 'pyflakes'
+let g:syntastic_python_checker = 'flake8'
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
 "ycm
