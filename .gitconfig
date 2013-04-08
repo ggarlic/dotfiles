@@ -6,9 +6,10 @@
     ci = commit -a  
     st = status  
     br = branch  
-    oneline = log --pretty=oneline --since='2 days ago'  
+    ol = log --pretty=oneline --since='2 days ago'  
     onelog = log -p -1  
     lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [color]  
     diff = auto  
     status = auto  
