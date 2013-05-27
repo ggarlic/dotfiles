@@ -52,7 +52,7 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-#source ~/.git-completion.sh
+source /usr/share/git/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
@@ -61,7 +61,7 @@ export GIT_PS1_SHOWUPSTREAM="auto verbose"
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]\342\234\227\[\033[1;37m\]]\")\[\033[1;31m\]\u\[\033[1;36m\] \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed \"s: ::g\") \[\033[1;35m\]\w \[\033[1;33m\]\$(__git_ps1 \"(%s)\")> \[\033[0m\]"
+    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]\342\234\227\[\033[1;37m\]]\")\[\033[1;31m\]\u@\h\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")> \[\033[0m\]"
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
@@ -88,7 +88,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -105,13 +105,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
 alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"
 alias m='TERM=xterm-256color mutt'
 
@@ -123,6 +116,47 @@ mkcd(){
 	cd "$*"
 }
 
+#extract files
+shopt -s extglob
+extract() {
+    local c e i
+
+    (($#)) || return
+
+    for i; do
+        c=''
+        e=1
+
+        if [[ ! -r $i ]]; then
+            echo "$0: file is unreadable: \`$i'" >&2
+            continue
+        fi
+
+        case $i in
+        *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+               c='bsdtar xvf';;
+        *.7z)  c='7z x';;
+        *.Z)   c='uncompress';;
+        *.bz2) c='bunzip2';;
+        *.exe) c='cabextract';;
+        *.gz)  c='gunzip';;
+        *.rar) c='unrar x';;
+        *.xz)  c='unxz';;
+        *.zip) c='unzip';;
+        *)     echo "$0: unrecognized file extension: \`$i'" >&2
+               continue;;
+        esac
+
+        command $c "$i"
+        e=$?З
+    done
+
+    return $e
+}
+#fcitx
+export GTK_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE=fcitx
 #mail
 export MAILCHECK=60
 export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
