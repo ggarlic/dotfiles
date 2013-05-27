@@ -7,7 +7,6 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 "github
-"Bundle 'c9s/colorselector.vim'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
@@ -15,7 +14,8 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
-Bundle 'Valloric/YouCompleteMe'
+"get ycm in AUR
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
 
@@ -56,10 +56,11 @@ set foldlevel=0
 set foldmethod=syntax
 set foldnestmax=1
 set nobackup
-set completeopt=longest,menu,preview
+set completeopt=longest,menu
 set display=lastline
 set nocompatible
 set autochdir
+set tags=tags;
 set sessionoptions-=curdir
 set autoread
 set history=1000
