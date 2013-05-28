@@ -14,8 +14,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
-"get ycm in AUR
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
 
@@ -33,7 +32,7 @@ Bundle 'fcitx.vim'
 Bundle 'grep.vim'
 Bundle 'matchit.zip'
 Bundle 'OmniCppComplete'
-Bundle 'Pydiction'
+"Bundle 'Pydiction'
 Bundle 'python.vim--Vasiliev'
 Bundle 'ragtag.vim'
 Bundle 'repeat.vim'
@@ -56,7 +55,7 @@ set foldlevel=0
 set foldmethod=syntax
 set foldnestmax=1
 set nobackup
-set completeopt=longest,menu
+set completeopt=longest,menu,preview
 set display=lastline
 set nocompatible
 set autochdir
@@ -201,12 +200,14 @@ nmap <F8> :TagbarToggle<CR>
 "showmarks
 let g:showmarks_enable = 0
 "syntastic
-let g:syntastic_python_checker = 'flake8'
+let g:syntastic_always_populate_loc_list = 1
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
 "ycm
 let g:ycm_add_preview_to_compleopt = 1
 let g:ycm_key_invoke_completion = '<C-/>'
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
 "let g:UltiSnipsSnippetsDir = $HOME . '/dotfiles/vim/UltiSnips'
