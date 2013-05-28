@@ -17,6 +17,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
+Bundle 'sontek/minibufexpl.vim'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -82,7 +83,7 @@ set shortmess=atI
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
-colorscheme molokai
+colorscheme molokai-transparent
 syntax enable
 "set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 set guifont="DejaVu Sans Mono"\ \ 10
