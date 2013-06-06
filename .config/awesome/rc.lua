@@ -76,8 +76,8 @@ local layouts =
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+ --   awful.layout.suit.spiral,
+ --   awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -769,6 +769,8 @@ mytextclock:buttons( awful.util.table.join(
             focus = true,
             keys = clientkeys,
             buttons = clientbuttons } },
+            { rule = { },
+            properties = { size_hints_honor = false }},
             { rule = { class = "smplayer" },
             properties = { floating = true } },
             { rule = { class = "Download" },
@@ -873,7 +875,7 @@ mytextclock:buttons( awful.util.table.join(
         run_once("xcompmgr")
         run_once("mpd")
         run_once("mpdscribble")
-        run_once("~/.mybashscripts/./notify.sh")
+        run_once("~/.mybashscripts/./mail_notify.py")
         -- }}}
 
         autorun = true
