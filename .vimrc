@@ -8,41 +8,33 @@ set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 "github
 Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
-Bundle 'sontek/minibufexpl.vim'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'hdima/python-syntax'
+Bundle 'majutsushi/tagbar'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'cecutil'
 Bundle 'closetag.vim'
 Bundle 'Colour-Sampler-Pack'
-"Bundle 'Conque-Shell'
 Bundle 'c.vim'
 Bundle 'DrawIt'
 Bundle 'fcitx.vim'
-"Bundle 'gtk-vim-syntax'
 Bundle 'grep.vim'
 Bundle 'matchit.zip'
-Bundle 'OmniCppComplete'
-"Bundle 'Pydiction'
-Bundle 'python.vim--Vasiliev'
 Bundle 'ragtag.vim'
 Bundle 'repeat.vim'
 Bundle 'ShowMarks'
 Bundle 'surround.vim'
-Bundle 'Tagbar'
-Bundle 'taglist.vim'
-Bundle 'The-NERD-Commenter'
-Bundle 'The-NERD-tree'
 Bundle 'winmanager'
 filetype plugin on
 """"""""""""""""""""""""""""""""
@@ -142,9 +134,6 @@ nnoremap tn :tabnext<CR>
 nnoremap to :tabnew<CR>
 nnoremap tc :tabclose<CR>
 nnoremap gf <C-W>gf
-"navigate in insert mode
-inoremap <c-l> <right>
-inoremap <c-h> <left>
 "quickfix window
 nnoremap <silent> <C-F6> :botright copen<CR>
 nnoremap <silent> <C-F7> :cclose<CR>
@@ -173,40 +162,50 @@ let Tlist_Enable_Fold_Column = 1
 let Tlist_Show_One_File=1
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
 map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --fields=+aiKSz
+
 "winmanager
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
+
 "minibufexpl 
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplModSelTarget = 1
+noremap <C-Down>  <C-W>j
+noremap <C-Up>    <C-W>k
+noremap <C-Left>  <C-W>h
+noremap <C-Right> <C-W>l
+noremap <C-TAB>   <C-W>w
+noremap <C-S-TAB> <C-W>W
+
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 "https://github.com/scrooloose/nerdtree/issues/21
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 " autoclose and so
 let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"] 
-"pydiction
-let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
-"toggle tlist
-nnoremap <silent> <F3> :TlistToggle<CR>:TlistUpdate<CR>
+
 "nerd commenter
 let NERDShutUp=1
+
 "vim indent guides
 "let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
 "powerline
 let g:Powerline_symbols = 'fancy'
+
 "tagbar
 nmap <F8> :TagbarToggle<CR>
+
 "showmarks
 let g:showmarks_enable = 0
+
 "syntastic
 let g:syntastic_always_populate_loc_list = 1
+
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
+
 "ycm
 let g:ycm_add_preview_to_compleopt = 1
 let g:ycm_key_invoke_completion = '<C-/>'
@@ -224,3 +223,7 @@ let g:UltiSnipsListSnippets = "<m-.>"
 let g:UltiSnipsJumpForwardTrigger = "<m-k>"
 let g:UltiSnipsJumpBackwardTrigger = "<m-j>"
 "let g:snips_author = 'Strahinja Val Markovic'"
+
+"python.vim
+let python_highlight_all = 1
+let python_version_2 = 1
