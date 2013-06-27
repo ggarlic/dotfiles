@@ -134,7 +134,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
-:inoremap ,, <ESC>o
+:inoremap ,. <ESC>o
+:inoremap ,, <ESC>$a:<CR>
 "tab navigation
 nnoremap tp :tabprevious<CR>
 nnoremap tn :tabnext<CR>
