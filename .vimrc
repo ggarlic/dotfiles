@@ -184,6 +184,8 @@ let g:miniBufExplModSelTarget = 1
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
+"https://github.com/scrooloose/nerdtree/issues/21
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " autoclose and so
 let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"] 
 "pydiction
