@@ -106,9 +106,10 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"
-alias m='TERM=xterm-256color mutt'
+alias m='mutt'
 
 export EDITOR="vim"
+export TERM="xterm-256color"
 
 #mkdir,cd into it
 mkcd(){
