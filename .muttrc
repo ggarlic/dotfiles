@@ -118,7 +118,7 @@ source "/home/ggarlic/.mail/mutt_colors"
 set sidebar_visible=yes
 #set sidebar_sort=yes
 mailboxes ! =gmail/inbox =work/inbox =gmail/bjtu =gmail/python =gmail/linux.shlug =gmail/social =gmail/xdlinux =gmail/linux.xiyou =gmail/social.appinn =gmail/linux.arch =gmail/diggdigest
-color sidebar_new  magenta default
+color sidebar_new  red default
 bind index \CP sidebar-prev
 bind index \CN sidebar-next
 bind index \CO sidebar-open
