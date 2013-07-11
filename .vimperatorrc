@@ -1,4 +1,4 @@
-autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffer.URL) || /google\.com\/reader\//.test(buffer.URL)
+autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffer.URL) || /digg\.com\/reader\//.test(buffer.URL)
 set editor=gvim 
 
 "Enable AwesomeBar
