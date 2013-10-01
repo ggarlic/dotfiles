@@ -21,6 +21,9 @@ Bundle 'SirVer/ultisnips'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'hdima/python-syntax'
 Bundle 'majutsushi/tagbar'
+"Bundle 'mhinz/vim-signify'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'junegunn/vim-emoji'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -46,7 +49,7 @@ set backspace=indent,eol,start
 set foldenable
 set foldlevel=0
 set foldmethod=syntax
-set foldnestmax=1
+set foldnestmax=2
 set nobackup
 set completeopt=longest,menu,preview
 set display=lastline
@@ -227,3 +230,15 @@ let g:UltiSnipsJumpBackwardTrigger = "<m-j>"
 "python.vim
 let python_highlight_all = 1
 let python_version_2 = 1
+
+"ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" vim-emoji
+silent! if emoji#available()
+  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif
