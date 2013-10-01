@@ -43,7 +43,6 @@ filetype plugin on
 """"""""""""""""""""""""""""""""
 "General
 """"""""""""""""""""""""""""""""
-filetype plugin indent on
 set clipboard=unnamed
 set backspace=indent,eol,start
 set foldenable
@@ -106,19 +105,20 @@ set matchtime=5
 """"""""""""""""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""""""""""""
-set smartindent
+set autoindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
 set formatoptions+=mM
+filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype html,xml,xsl source /home/ggarlic/.vim/bundle/closetag.vim/plugin/closetag.vim
-au FileType c setlocal omnifunc=ccomplete#Complete tags+=/home/ggarlic/.vim/systags;
-au FileType python setlocal omnifunc=pythoncomplete#Complete foldmethod=indent
+au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags;
+au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
