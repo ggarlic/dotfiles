@@ -28,7 +28,7 @@ remoteport = 993
 remoteuser = yangbo.ggarlic@gmail.com
 remotepassfile = ~/.mail/passwd
 nametrans = lambda foldername: re.sub (' ', '_', foldername.lower())
-folderfilter = lambda foldername: foldername in ['INBOX','bjtu','diggdigest','linux/arch','linux/shlug','xdlinux','linux/xiyou','Social','Social/appinn','python']
+folderfilter = lambda foldername: foldername in ['INBOX','[Gmail]/Drafts','linux/arch','linux/shlug','xdlinux','linux/xiyou','Social','Social/appinn','python','admaster']
 
 
 [Repository workLocal]
