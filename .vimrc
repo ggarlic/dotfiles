@@ -46,7 +46,7 @@ filetype plugin on
 set clipboard=unnamed
 set backspace=indent,eol,start
 set foldenable
-set foldlevel=0
+set foldlevel=99
 set foldmethod=syntax
 set foldnestmax=2
 set nobackup
@@ -72,12 +72,14 @@ set report=0
 set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
+set dictionary+=/usr/share/dict/web2
 """""""""""""""""""""""""""""""""""
 " Interface and themes
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
-colorscheme molokai-transparent
+"colorscheme molokai-transparent
+colorscheme ir_black
 syntax enable
 "set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 set guifont="DejaVu Sans Mono"\ \ 10
@@ -89,7 +91,7 @@ set title
 set wildmenu
 set number
 set linebreak
-set cc=81
+set cc=80
 hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
@@ -150,6 +152,8 @@ map <silent> <C-F3> :if &guioptions =~# 'T' <Bar>
     \endif<CR>
 "use spacebar to fold/unfold
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -203,15 +207,21 @@ let g:showmarks_enable = 0
 
 "syntastic
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
 
 "ycm
 let g:ycm_add_preview_to_compleopt = 1
-let g:ycm_key_invoke_completion = '<C-/>'
+let g:ycm_key_invoke_completion = '<C-.>'
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+let g:syntastic_always_populate_loc_list = 1
+
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
 "let g:UltiSnipsSnippetsDir = $HOME . '/dotfiles/vim/UltiSnips'
@@ -221,8 +231,8 @@ set <m-k>=k
 set <m-.>=.
 let g:UltiSnipsExpandTrigger = "<m-/>"
 let g:UltiSnipsListSnippets = "<m-.>"
-let g:UltiSnipsJumpForwardTrigger = "<m-k>"
-let g:UltiSnipsJumpBackwardTrigger = "<m-j>"
+let g:UltiSnipsJumpForwardTrigger = "<m-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<m-k>"
 "let g:snips_author = 'Strahinja Val Markovic'"
 
 "python.vim
@@ -240,3 +250,6 @@ silent! if emoji#available()
   let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
   let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+
+"gitgutter
+let g:gitgutter_escape_grep = 1
