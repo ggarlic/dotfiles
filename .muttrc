@@ -3,16 +3,16 @@ set pgp_verify_sig=yes                   #在页中不显示 pgp
 set status_on_top                       #在顶部显示状态行
 
 set pager_format="%-10.10i %[!%a %b %d %R]"
-set date_format="!%H:%M %a %d %b     "
+set date_format="!%a %b %d %H:%M "
 set folder_format="%3C %t%N %F %-8.8u %-8.8g %8s %d %f"
 set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]----%>-(%P)---"
-set index_format="%4C %Z %{%b %d} %?X?%X& ? %-18.18L [%4c] %s"
+set index_format="%4C %Z %D %?X?%X& ? %-18.18L [%4c] %s"
 
 set mbox_type=Maildir
 set folder = "~/.mail/"
 set mbox=+gmail/inbox
 set spoolfile=+gmail/inbox
-#set postponed=+drafts
+set postponed=+[gmail]/drafts
 set header_cache="~/.mail/cache/header"
 set mask="!^\\.[^.]"
 unset record
@@ -112,19 +112,19 @@ unignore        From: Date: Subject: To: Cc: BCC: Reply-to: Mail-Followup-To: X-
 hdr_order       From: Reply-to: To: Cc: Subject: Date: X-PGP-Key-ID User-Agent: X-Mailer: X-Agent: X-Operating-System
 
 #color scheme
-source "/home/ggarlic/.mail/mutt_colors"
+source "$HOME/.mail/mutt_colors"
 
 ###mutt-sidebar
 set sidebar_visible=yes
 #set sidebar_sort=yes
-mailboxes ! =gmail/inbox =work/inbox =gmail/bjtu =gmail/python =gmail/linux.shlug =gmail/social =gmail/xdlinux =gmail/linux.xiyou =gmail/social.appinn =gmail/linux.arch =gmail/diggdigest
+mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/social.appinn =gmail/linux.arch =postponed
 color sidebar_new  red default
 bind index \CP sidebar-prev
 bind index \CN sidebar-next
-bind index \CO sidebar-open
+bind index \CK sidebar-open
 bind pager \CP sidebar-prev
 bind pager \CN sidebar-next
-bind pager \CO sidebar-open
+bind pager \CK sidebar-open
 # I don't need these.  just for documentation purposes.  See below.
 # sidebar-scroll-up
 # sidebar-scroll-down
