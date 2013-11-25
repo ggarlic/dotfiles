@@ -120,7 +120,8 @@ filetype indent on
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype html,xml,xsl source /home/ggarlic/.vim/bundle/closetag.vim/plugin/closetag.vim
-au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags;
+au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
+au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
 au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -220,7 +221,6 @@ let g:ycm_key_invoke_completion = '<C-.>'
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:syntastic_always_populate_loc_list = 1
 
 "ultisnips
