@@ -24,6 +24,7 @@ Bundle 'majutsushi/tagbar'
 "Bundle 'mhinz/vim-signify'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-emoji'
+Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
