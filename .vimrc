@@ -25,6 +25,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'cespare/vim-golang'
+Bundle 'Blackrush/vim-gocode'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -127,7 +129,7 @@ au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
+au BufWritePre *.go :Fmt
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -204,6 +206,33 @@ let g:Powerline_symbols = 'fancy'
 "tagbar
 nmap <F8> :TagbarToggle<CR>
 
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
 "showmarks
 let g:showmarks_enable = 0
 
