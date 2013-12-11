@@ -27,6 +27,8 @@ Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'cespare/vim-golang'
 Bundle 'Blackrush/vim-gocode'
+Bundle 'rking/ag.vim'
+Bundle 'sjl/gundo.vim'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -283,3 +285,6 @@ endif
 
 "gitgutter
 let g:gitgutter_escape_grep = 1
+
+"gundo
+nnoremap <F5> :GundoToggle<CR>
