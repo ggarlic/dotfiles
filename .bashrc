@@ -168,3 +168,6 @@ PROMPT_COMMAND='history -a'
 
 #auto cd jump
 shopt -s autocd
+
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin
