@@ -34,8 +34,9 @@ macro index G "!offlineimap -o -u blinkenlights\n" "Sync Mail"
 set quit=ask-yes
 
 set sort = threads
+set sort_aux = last-date-received
+set sort_browser=reverse-date
 set ascii_chars=yes
-set sort_aux = reverse-date
 set pager_stop
 set menu_scroll
 set fast_reply
@@ -49,6 +50,9 @@ set recall=no
 set mime_forward=yes
 set mime_forward_rest=yes
 
+#faster
+set header_cache="~/mail/.header_cache/"
+set maildir_header_cache_verify=no 
 # Charset settings
 set rfc2047_parameters=yes
 
