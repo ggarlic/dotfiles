@@ -200,6 +200,13 @@ let NERDShutUp=1
 "vim indent guides
 "let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=lightgrey
 
 "powerline
 let g:Powerline_symbols = 'fancy'
@@ -241,6 +248,8 @@ let g:showmarks_enable = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✠'
+let g:syntastic_style_warning_symbol = '≈'
 
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
