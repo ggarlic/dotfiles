@@ -2,7 +2,7 @@ autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffe
 set editor=gvim 
 
 "Enable AwesomeBar
-set complete=l
+set complete=slS
 
 noremap j 3j
 noremap k 3k
@@ -27,3 +27,10 @@ map <silent> W :exe ":dict "+content.getSelection()<CR>
 "dictd
 map <F12> ibvey<Esc><Esc>:!dict <C-v>|grep -v $<CR>
 map <S-F12> Y:!dict <C-v>|grep -v ^$<CR>
+
+" Press 'm' to go to previous tab
+noremap m :tabprevious<CR>
+" Press ',' to go to next tab
+noremap , :tabnext<CR>
+map <F2> :set gui=invnavigation<CR>
+
