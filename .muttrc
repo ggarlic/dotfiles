@@ -121,14 +121,14 @@ source "$HOME/.mail/mutt_colors"
 ###mutt-sidebar
 set sidebar_visible=yes
 #set sidebar_sort=yes
-mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/social.appinn =gmail/linux.arch =postponed
+mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/linux.arch =postponed
 color sidebar_new  red default
-bind index \CP sidebar-prev
-bind index \CN sidebar-next
-bind index \CK sidebar-open
-bind pager \CP sidebar-prev
-bind pager \CN sidebar-next
-bind pager \CK sidebar-open
+bind index \CK sidebar-prev
+bind index \CJ sidebar-next
+bind index \CL sidebar-open
+bind pager \CK sidebar-prev
+bind pager \CJ sidebar-next
+bind pager \CL sidebar-open
 # I don't need these.  just for documentation purposes.  See below.
 # sidebar-scroll-up
 # sidebar-scroll-down
