@@ -77,6 +77,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
+set pastetoggle=<F3>
 """""""""""""""""""""""""""""""""""
 " Interface and themes
 """""""""""""""""""""""""""""""""""
@@ -159,6 +160,8 @@ map <silent> <C-F3> :if &guioptions =~# 'T' <Bar>
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+"write read-only files
+cnoremap sudow w !sudo tee % >/dev/null
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""
