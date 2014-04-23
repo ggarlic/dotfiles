@@ -299,3 +299,29 @@ let g:gitgutter_escape_grep = 1
 
 "gundo
 nnoremap <F5> :GundoToggle<CR>
+
+" Run current file
+func! RunSrc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
+    elseif &filetype == 'cpp' || &filetype == 'hpp'
+        exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
+    elseif &filetype == 'perl'
+        exec "!astyle --style=gnu --suffix=none %"
+    elseif &filetype == 'py'||&filetype == 'python'
+        exec "!python %"
+    elseif &filetype == 'java'
+        exec "!astyle --style=java --suffix=none %"
+    endif
+    exec "e! %"
+endfunc
+
+" Toggle paste mode before pasting
+ func! XTermPasteBegin()
+   set pastetoggle=<Esc>[201~
+   set paste
+   return ""
+endfunc
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()]
+noremap <silent><Leader>r :call RunSrc()<CR>
