@@ -9,7 +9,8 @@ call vundle#rc()
 "github
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
@@ -77,7 +78,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
-set pastetoggle=<F3>
 """""""""""""""""""""""""""""""""""
 " Interface and themes
 """""""""""""""""""""""""""""""""""
@@ -124,7 +124,8 @@ filetype indent on
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype html,xml,xsl source /home/ggarlic/.vim/bundle/closetag.vim/plugin/closetag.vim
-au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
+"au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
+au FileType c setlocal omnifunc=ccomplete#Complete cindent | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
 au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
 au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -201,7 +202,7 @@ let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]
 let NERDShutUp=1
 
 "vim indent guides
-"let g:indent_guides_start_level = 2
+let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
@@ -263,8 +264,8 @@ let g:ycm_key_invoke_completion = '<C-.>'
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:syntastic_always_populate_loc_list = 1
-
+let g:ycm_register_as_syntastic_checker = 1
+let g:ycm_goto_buffer_command='vertical-split'
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
 "let g:UltiSnipsSnippetsDir = $HOME . '/dotfiles/vim/UltiSnips'
