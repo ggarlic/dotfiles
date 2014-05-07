@@ -27,6 +27,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'Blackrush/vim-gocode'
+Bundle 'dgryski/vim-godef'
+Bundle 'nsf/gocode', {'rtp': 'vim/'}
 Bundle 'rking/ag.vim'
 Bundle 'sjl/gundo.vim'
 
@@ -132,6 +134,9 @@ au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+"goimport
+let g:gofmt_command = 'goimports'
 au BufWritePre *.go :Fmt
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
