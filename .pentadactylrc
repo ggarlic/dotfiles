@@ -18,5 +18,5 @@ map -builtin k 5k
 map -builtin m :tabprevious<CR>
 map -builtin , :tabnext<CR>
 
-autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com/.test(buffer.URL) || /digg\.com\/reader\//.test(buffer.URL)
-
+autocmd LocationChange ^https?://mail\.google\.com/ :normal! <C-z>
+autocmd LocationChange ^https?://digg\.com\/reader\/ :normal! <C-z>
