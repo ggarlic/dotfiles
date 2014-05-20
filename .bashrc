@@ -124,6 +124,8 @@ export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work h
 # better history with multi session
 shopt -s histappend
 PROMPT_COMMAND='history -a'
+#stty stop ^J
+stty stop undef
 
 #auto cd jump
 shopt -s autocd

@@ -2,7 +2,7 @@ set completion-ignore-case on
 set completion-prefix-display-length 2
 
 # alternate mappings for "page up" and "page down" to search the history
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 
 #"\C-i": menu-complete
