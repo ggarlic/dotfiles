@@ -870,11 +870,13 @@ mytextclock:buttons( awful.util.table.join(
 
         run_once("nitrogen --restore")
         run_once("nm-applet")
+        run_once("sogou-qimpanel")
         run_once("fcitx")
-        --run_once("cairo-compmgr")
-        run_once("xcompmgr")
+        run_once("compton")
         run_once("mpd")
         run_once("mpdscribble")
+        --run_once("volumeicon")
+        run_once("xfce4-power-manager")
         run_once("~/.mybashscripts/./mail_notify.py")
         -- }}}
 
