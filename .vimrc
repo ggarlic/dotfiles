@@ -284,6 +284,7 @@ let g:UltiSnipsExpandTrigger = "<m-/>"
 let g:UltiSnipsListSnippets = "<m-.>"
 let g:UltiSnipsJumpForwardTrigger = "<m-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<m-k>"
+let g:UltiSnipsEditSplit="vertical"
 "let g:snips_author = 'Strahinja Val Markovic'"
 
 "python.vim
