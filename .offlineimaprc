@@ -27,6 +27,9 @@ ssl = yes
 remoteport = 993
 remoteuser = yangbo.ggarlic@gmail.com
 #cert_fingerprint=89091347184d41768bfc0da9fad94bfe882dd358
+#in OSX:
+#we use sslcacertfile = /usr/local/etc/openssl/cert.pem
+#remember to install openssl using homebrew first
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepassfile = ~/.mail/passwd
 nametrans = lambda foldername: re.sub (' ', '_', foldername.lower())
