@@ -32,6 +32,9 @@ Bundle 'dgryski/vim-godef'
 Bundle 'nsf/gocode', {'rtp': 'vim/'}
 Bundle 'rking/ag.vim'
 Bundle 'sjl/gundo.vim'
+"Bundle 'jimenezrick/vimerl'
+Bundle 'ivanov/vim-ipython'
+
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
