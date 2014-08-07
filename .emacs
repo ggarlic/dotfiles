@@ -1,4 +1,6 @@
 (show-paren-mode t)
+;;turn off the backup
+(setq make-backup-files nil)
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 ;; Replace "sbcl" with the path to your implementation
