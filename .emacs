@@ -88,7 +88,8 @@
 ;auto-complete
 (require 'auto-complete)
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140618.2217/dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140803.2118/dict")
+(ac-config-default)
 (setq-default ac-sources
       '(
         ac-source-yasnippet
@@ -102,6 +103,7 @@
         ac-source-filename
         )
       )
+(setq ac-fuzzy-enable t)
 (ac-config-default)
 
 ;jedi
