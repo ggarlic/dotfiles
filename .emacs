@@ -1,4 +1,5 @@
 (show-paren-mode t)
+(setq show-paren-style 'parentheses)
 ;;turn off the backup
 (setq make-backup-files nil)
 
