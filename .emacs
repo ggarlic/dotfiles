@@ -103,7 +103,7 @@
         ac-source-abbrev
         ac-source-semantic
         ac-source-words-in-buffer
-        ac-source-words-in-same-mode-buffer
+        ac-source-words-in-same-mode-buffers
         ;; ac-source-imenu
         ac-source-files-in-current-dir
         ac-source-filename
