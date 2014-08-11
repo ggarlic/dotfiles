@@ -29,6 +29,9 @@
 ;highlight current line
 (global-hl-line-mode 1)
 
+;no toolbar
+(tool-bar-mode 0)
+
 (require 'python)
 (setq
   python-shell-interpreter "ipython"
@@ -107,7 +110,6 @@
         )
       )
 (setq ac-fuzzy-enable t)
-(ac-config-default)
 
 ;jedi
 (add-hook 'python-mode-hook 'jedi:setup
