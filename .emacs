@@ -8,7 +8,7 @@
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 (setq package-archives '(
-;("gnu" . "http://elpa.gnu.org/packages/")
+("gnu" . "http://elpa.gnu.org/packages/")
 ("melpa" . "http://melpa.milkbox.net/packages/")
 ("marmalade" . "http://marmalade-repo.org/packages/")
 ))
