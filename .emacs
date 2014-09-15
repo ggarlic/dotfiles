@@ -3,9 +3,6 @@
 ;;turn off the backup
 (setq make-backup-files nil)
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 (setq package-archives '(
 ("gnu" . "http://elpa.gnu.org/packages/")
@@ -17,6 +14,8 @@
 ;手动初始化之，如此elpa会将packages的路径加入load-path中，免去我们分别手动加入的麻烦了
 (package-initialize) 
 (put 'upcase-region 'disabled nil)
+
+
 (require 'color-theme-sanityinc-solarized)
 (load-theme 'sanityinc-solarized-dark t)
 ;(color-theme-sanityinc-solarized-dark)
@@ -31,6 +30,10 @@
 
 ;no toolbar
 (tool-bar-mode 0)
+
+;menu bar popup
+;use Ctrl with right click to pop it up
+(menu-bar-mode -99)
 
 (require 'python)
 (setq
@@ -156,15 +159,21 @@
 (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'geiser-repl-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(quack-programs (quote ("mzscheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;;slime
+;;(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(require 'slime-autoloads)
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-lisp-implementations
+         '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
+(slime-setup '(slime-fancy))
+(setq slime-use-autodoc-mode nil)
+;;(setq slime-contribs '(slime-fancy)) ; almost everything
+
+;; paredit
+(dolist (hook '(emacs-lisp-mode-hook
+                lisp-mode-hook
+                slime-repl-mode-hook))
+  (add-hook hook #'(lambda nil (paredit-mode 1))))
+
