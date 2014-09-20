@@ -272,7 +272,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 let g:ycm_add_preview_to_compleopt = 1
 let g:ycm_key_invoke_completion = '<C-.>'
 let g:ycm_autoclose_preview_window_after_completion=1
-nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
