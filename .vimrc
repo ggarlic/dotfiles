@@ -34,7 +34,7 @@ Bundle 'rking/ag.vim'
 Bundle 'sjl/gundo.vim'
 "Bundle 'jimenezrick/vimerl'
 Bundle 'ivanov/vim-ipython'
-
+Bundle 'Xuyuanp/nerdtree-git-plugin'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
