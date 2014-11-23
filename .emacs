@@ -141,6 +141,7 @@
 ;rainbow-delimiters
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
 
 ;; The binary of your interpreter
 (setq scheme-program-name "racket")
@@ -168,12 +169,14 @@
 (setq slime-lisp-implementations
          '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
 (slime-setup '(slime-fancy))
-(setq slime-use-autodoc-mode nil)
+;(setq slime-use-autodoc-mode nil)
 ;;(setq slime-contribs '(slime-fancy)) ; almost everything
 
 ;; paredit
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-mode-hook
+                scheme-mode-hook
+                geiser-repl-mode-hook
                 slime-repl-mode-hook))
   (add-hook hook #'(lambda nil (paredit-mode 1))))
 
