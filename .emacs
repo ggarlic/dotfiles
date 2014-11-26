@@ -170,9 +170,15 @@
          '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
 (slime-setup '(slime-fancy))
 ;(setq slime-use-autodoc-mode nil)
-;;(setq slime-contribs '(slime-fancy)) ; almost everything
-
+;(setq slime-contribs '(slime-fancy)) ; almost everything
+(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
 ;; paredit
+;; Stop SLIME's REPL from grabbing DEL,
+;; which is annoying when backspacing over a '('
+(defun override-slime-repl-bindings-with-paredit ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
+(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-mode-hook
                 scheme-mode-hook
