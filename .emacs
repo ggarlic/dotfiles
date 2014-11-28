@@ -115,6 +115,9 @@
         )
       )
 (setq ac-fuzzy-enable t)
+(local-set-key "." 'semantic-complete-self-insert)
+(local-set-key ">" 'semantic-complete-self-insert)
+
 
 ;jedi
 (add-hook 'python-mode-hook 'jedi:setup
