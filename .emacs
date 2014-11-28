@@ -49,11 +49,13 @@
     "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 
-(set-frame-font "Monaco-13")
-(set-fontset-font
-  (frame-parameter nil 'font)
-  'han
-  (font-spec :family "Hiragino Sans GB" ))
+(if (display-graphic-p)
+  (progn
+    (set-frame-font "Monaco-13")
+    (set-fontset-font
+      (frame-parameter nil 'font)
+      'han
+      (font-spec :family "Hiragino Sans GB" ))))
 
 ;id-at-point
 (autoload 'ido-at-point-mode "ido-at-point")
