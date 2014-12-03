@@ -15,8 +15,8 @@ set nextpattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previo
 
 map -builtin j 5j
 map -builtin k 5k
-map -builtin m :tabprevious<CR>
-map -builtin , :tabnext<CR>
+map -builtin , :tabprevious<CR>
+map -builtin m :tabnext<CR>
 
 autocmd LocationChange ^https?://mail\.google\.com/ :normal! <C-z>
 autocmd LocationChange ^https?://digg\.com\/reader\/ :normal! <C-z>
