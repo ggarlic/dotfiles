@@ -15,8 +15,8 @@ set nextpattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previo
 
 map -builtin j 5j
 map -builtin k 5k
-map -builtin m :tabprevious<CR>
-map -builtin , :tabnext<CR>
+map -builtin , :tabprevious<CR>
+map -builtin m :tabnext<CR>
 
 autocmd LocationChange ^https?://mail\.google\.com/ :normal! <C-z>
 autocmd LocationChange ^https?://digg\.com\/reader\/ :normal! <C-z>
@@ -24,7 +24,7 @@ autocmd LocationChange ^https?://digg\.com\/reader\/ :normal! <C-z>
 com! fy :o javascript:%20void((function()%20{var%20element%20=%20document.createElement('script');element.id%20=%20'outfox_seed_js';element.charset%20=%20'utf-8',element.setAttribute('src',%20'http://fanyi.youdao.com/web2/seed.js?'%20+%20Date.parse(new%20Date()));document.body.appendChild(element);})())
 com! ip -description "Bookmarklet: A simple tool to save web pages for reading later" :o javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/rEGmpZUeybEE?a=read-later&u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)
 
-set hintkeys=asdfjkl;
+set hintkeys=asdfghjkl;
 
 style -name tabbrowser-height-fix chrome://* <<EOM
 [dactyl-australis=true] .tabbrowser-tabs {
