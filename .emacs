@@ -142,6 +142,11 @@
 ;git gutter
 (require 'git-gutter-fringe)
 (global-git-gutter-mode)
+(custom-set-variables
+ '(git-gutter:window-width 2)
+ '(git-gutter:modified-sign "☁")
+ '(git-gutter:added-sign "☀")
+ '(git-gutter:deleted-sign "☂"))
 
 ;rainbow-delimiters
 (require 'rainbow-delimiters)
