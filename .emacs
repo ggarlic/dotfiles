@@ -3,7 +3,6 @@
 ;;turn off the backup
 (setq make-backup-files nil)
 
-
 (setq package-archives '(
 ("gnu" . "http://elpa.gnu.org/packages/")
 ("melpa" . "http://melpa.milkbox.net/packages/")
@@ -16,10 +15,13 @@
 (put 'upcase-region 'disabled nil)
 
 
-(require 'color-theme-sanityinc-solarized)
-(load-theme 'sanityinc-solarized-dark t)
+;(require 'color-theme-sanityinc-solarized)
+;(load-theme 'sanityinc-solarized-dark t)
 ;(color-theme-sanityinc-solarized-dark)
-(setq color-theme-sanityinc-solarized-rgb-is-srgb t)
+;(setq color-theme-sanityinc-solarized-rgb-is-srgb t)
+(if (display-graphic-p)
+    (load-theme 'spacegray t)
+    (load-theme 'base16-default t))
 
 ;exec-path-from-shell   for mac
 (when (memq window-system '(mac ns))
@@ -138,15 +140,21 @@
 ;line number
 ;(require 'linum)
 (global-linum-mode)
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+                     (count-lines (point-min) (point-max)))))
+         (linum-format (concat " %" (number-to-string w) "d ")))
+    ad-do-it))
 
 ;git gutter
-(require 'git-gutter-fringe)
-(global-git-gutter-mode)
-(custom-set-variables
- '(git-gutter:window-width 2)
- '(git-gutter:modified-sign "☁")
- '(git-gutter:added-sign "☀")
- '(git-gutter:deleted-sign "☂"))
+(require 'git-gutter)
+(global-git-gutter-mode +1)
+;(if (display-graphic-p)
+    ;(custom-set-variables
+     ;'(git-gutter:window-width 2)
+     ;'(git-gutter:modified-sign "☁")
+     ;'(git-gutter:added-sign "☀")
+     ;'(git-gutter:deleted-sign "☂")))
 
 ;rainbow-delimiters
 (require 'rainbow-delimiters)
