@@ -283,10 +283,10 @@ set <m-/>=/
 set <m-j>=j
 set <m-k>=k
 set <m-.>=.
-let g:UltiSnipsExpandTrigger = "<m-/>"
+let g:UltiSnipsExpandTrigger = "<C-j>"
 let g:UltiSnipsListSnippets = "<m-.>"
-let g:UltiSnipsJumpForwardTrigger = "<m-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<m-k>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsEditSplit="vertical"
 "let g:snips_author = 'Strahinja Val Markovic'"
 
