@@ -15,10 +15,6 @@
 (put 'upcase-region 'disabled nil)
 
 
-;(require 'color-theme-sanityinc-solarized)
-;(load-theme 'sanityinc-solarized-dark t)
-;(color-theme-sanityinc-solarized-dark)
-;(setq color-theme-sanityinc-solarized-rgb-is-srgb t)
 (if (display-graphic-p)
     (load-theme 'spacegray t)
     (load-theme 'base16-default t))
@@ -149,12 +145,6 @@
 ;git gutter
 (require 'git-gutter)
 (global-git-gutter-mode +1)
-;(if (display-graphic-p)
-    ;(custom-set-variables
-     ;'(git-gutter:window-width 2)
-     ;'(git-gutter:modified-sign "☁")
-     ;'(git-gutter:added-sign "☀")
-     ;'(git-gutter:deleted-sign "☂")))
 
 ;rainbow-delimiters
 (require 'rainbow-delimiters)
