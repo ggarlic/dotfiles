@@ -259,11 +259,12 @@ let g:tagbar_type_go = {
 let g:showmarks_enable = 0
 
 "syntastic
+let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✠'
-let g:syntastic_style_warning_symbol = '≈'
+let g:syntastic_style_warning_symbol = '∆'
 
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
