@@ -9,10 +9,8 @@ call vundle#rc()
 "github
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
-"Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -23,7 +21,6 @@ Bundle 'honza/vim-snippets'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'hdima/python-syntax'
 Bundle 'majutsushi/tagbar'
-"Bundle 'mhinz/vim-signify'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
@@ -35,6 +32,8 @@ Bundle 'sjl/gundo.vim'
 "Bundle 'jimenezrick/vimerl'
 Bundle 'ivanov/vim-ipython'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Yggdroot/indentLine'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -211,17 +210,6 @@ let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]
 "nerd commenter
 let NERDShutUp=1
 
-"vim indent guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-
-
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=darkgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=lightgrey
-
 "powerline
 let g:Powerline_symbols = 'fancy'
 
@@ -277,6 +265,19 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
+"jedi
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+
+let g:jedi#goto_assignments_command = "<leader>pa"
+let g:jedi#goto_definitions_command = "<leader>pd"
+let g:jedi#documentation_command = "<leader>pk"
+let g:jedi#usages_command = "<leader>pu"
+let g:jedi#rename_command = "<leader>pr"
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
 "let g:UltiSnipsSnippetsDir = $HOME . '/dotfiles/vim/UltiSnips'
