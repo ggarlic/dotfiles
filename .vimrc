@@ -34,6 +34,9 @@ Bundle 'ivanov/vim-ipython'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Yggdroot/indentLine'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'morhetz/gruvbox'
+Bundle 'kien/rainbow_parentheses.vim'
 
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
@@ -365,3 +368,18 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+""==== indentLine ====
+if has("gui_running")
+let g:indentLine_char = '|'
+else
+let g:indentLine_char = '¦'
+endif
+
+"rainbow_parenthese
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+set background=dark 
