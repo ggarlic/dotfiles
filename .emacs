@@ -194,3 +194,32 @@
                 slime-repl-mode-hook))
   (add-hook hook #'(lambda nil (paredit-mode 1))))
 
+;;haskell-mode
+;; haskell-mode
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(setq haskell-process-type 'cabal-repl
+haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"
+                                  "--with-ghc=ghci-ng"))
+(define-key haskell-mode-map (kbd "C-x C-d") nil)
+(define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
+(define-key haskell-mode-map (kbd "C-c C-b") 'haskell-interactive-switch)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+(define-key haskell-mode-map (kbd "C-c M-.") nil)
+(define-key haskell-mode-map (kbd "C-c C-d") nil)
+(define-key haskell-mode-map (kbd "C-c v c") 'haskell-cabal-visit-file)
+ ;; auto-complete for haskell
+(defun el-get-ac-haskell-candidates (prefix)
+  (let ((cs (haskell-process-get-repl-completions (haskell-process) prefix)))
+    (remove-if (lambda (c) (string= "" c)) cs)))
+(ac-define-source haskell
+                  '((candidates . (el-get-ac-haskell-candidates ac-prefix))))
+(defun el-get-haskell-hook ()
+  (add-to-list 'ac-sources 'ac-source-haskell))
+(add-hook 'haskell-mode-hook 'el-get-haskell-hook)
+;;ghc
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
