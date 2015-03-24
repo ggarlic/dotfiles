@@ -196,11 +196,11 @@
 
 ;;haskell-mode
 ;; haskell-mode
+(require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (setq haskell-process-type 'cabal-repl
-haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"
-                                  "--with-ghc=ghci-ng"))
+haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
 (define-key haskell-mode-map (kbd "C-x C-d") nil)
 (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
