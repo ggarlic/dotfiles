@@ -58,10 +58,10 @@ filetype plugin on
 """"""""""""""""""""""""""""""""
 set clipboard=unnamed
 set backspace=indent,eol,start
-set foldenable
-set foldlevel=99
+set nofoldenable
+set foldlevel=11
 set foldmethod=syntax
-set foldnestmax=2
+set foldnestmax=10
 set nobackup
 set completeopt=longest,menu,preview
 set display=lastline
@@ -92,7 +92,8 @@ set dictionary+=/usr/share/dict/web2
 set t_Co=256
 set cursorline
 "colorscheme molokai-transparent
-colorscheme ir_black
+"colorscheme tir_black
+colorscheme gruvbox
 syntax enable
 "set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 set guifont="DejaVu Sans Mono"\ \ 10
@@ -138,6 +139,7 @@ au FileType c,cpp inoremap ,, <ESC>A;<CR>
 au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
 au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
 au FileType python inoremap ,, <ESC>A:<CR>
+au FileType go setlocal foldmethod=indent
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
