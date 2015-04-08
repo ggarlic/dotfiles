@@ -30,7 +30,6 @@ set include=yes
 set indent_str="> "
 set signature = ~/.mail/mutt_signature
 
-macro index G "!offlineimap -o -u blinkenlights\n" "Sync Mail"
 set quit=ask-yes
 
 set sort = threads
@@ -60,6 +59,7 @@ set rfc2047_parameters=yes
 bind attach i exit
 bind attach space view-attach
 bind index gg first-entry
+bind index G last-entry
 bind index \cf next-page
 bind index \cb previous-page
 bind index j next-entry
@@ -69,10 +69,12 @@ bind pager k previous-line
 bind pager <Up> previous-line
 bind pager <Down> next-line
 bind pager gg top
-bind pager,index L group-reply
-#bind pager G bottom
+bind pager G bottom
+bind pager,index R group-reply
+bind pager,index r reply
 bind index \Cx sync-mailbox
 bind editor <space> noop
+macro index E "!offlineimap -o -u blinkenlights\n" "Sync Mail"
 #bind index,pager L group-reply
 
 macro index gi "<change-folder>=inbox<enter>" "Go to inbox"
@@ -120,6 +122,7 @@ source "$HOME/.mail/mutt_colors"
 
 ###mutt-sidebar
 set sidebar_visible=yes
+set sidebar_width=25
 #set sidebar_sort=yes
 mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/linux.arch =postponed
 color sidebar_new  red default
@@ -138,6 +141,3 @@ macro index b '<enter-command>toggle sidebar_visible<enter>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 # Remap bounce-message function to "B"
 bind index B bounce-message
-
-#gpg
-source "/home/ggarlic/.mail/crypto"
