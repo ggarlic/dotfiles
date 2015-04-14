@@ -33,8 +33,10 @@ set signature = ~/.mail/mutt_signature
 set quit=ask-yes
 
 set sort = threads
-set sort_aux = last-date-received
-set sort_browser=reverse-date
+set sort_aux = reverse-last-date-received
+set sort_re
+
+#set sort_browser=reverse-date
 set ascii_chars=yes
 set pager_stop
 set menu_scroll
