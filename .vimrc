@@ -106,7 +106,7 @@ set title
 set wildmenu
 set number
 set linebreak
-set cc=80
+set cc=81
 hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
