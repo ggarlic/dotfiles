@@ -3,13 +3,14 @@
     email = yangbo@admaster.com.cn
 [alias]  
     co = checkout  
-    ci = commit -a  
+    ci = commit
     st = status  
     br = branch  
     ol = log --pretty=oneline --since='2 days ago'  
     onelog = log -p -1  
     lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    la = log --all --color --graph --decorate=full --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date-order
 [color]  
     diff = auto  
     status = auto  
@@ -19,6 +20,7 @@
     ui = auto  
 [diff]
     tool = vimdiff
+	algorithm = patience
 [merge]
     tool = vimdiff
 [push]
