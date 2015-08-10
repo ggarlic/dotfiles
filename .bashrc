@@ -24,6 +24,9 @@ shopt -s checkwinsize
 
 shopt -s extglob
 
+export EDITOR="vim"
+export TERM="xterm-256color"
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
@@ -115,8 +118,6 @@ fi
 alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"
 alias m='mutt'
 
-export EDITOR="vim"
-export TERM="xterm-256color"
 
 #mkdir,cd into it
 mkcd(){
