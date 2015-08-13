@@ -12,11 +12,6 @@
     lg = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     la = log --all --color --graph --decorate=full --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date-order
 [color]  
-    diff = auto  
-    status = auto  
-    branch = auto  
-    grep = auto
-    interactive = auto
     ui = auto  
 [diff]
     tool = vimdiff
