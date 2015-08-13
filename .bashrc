@@ -26,9 +26,11 @@ shopt -s extglob
 
 export EDITOR="vim"
 
-if [[ $TERM == xterm ]]; then
-    TERM=xterm-256color
-fi
+case "$TERM" in
+    xterm*|rxvt*)
+        TERM=xterm-256color
+        ;;
+esac
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
