@@ -25,7 +25,10 @@ shopt -s checkwinsize
 shopt -s extglob
 
 export EDITOR="vim"
-export TERM="xterm-256color"
+
+if [[ $TERM == xterm ]]; then
+    TERM=xterm-256color
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -104,8 +107,6 @@ export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work h
 #stty stop ^J
 stty stop undef
 
-#auto cd jump
-shopt -s autocd
 
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
