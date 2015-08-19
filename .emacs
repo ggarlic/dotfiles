@@ -80,6 +80,9 @@
 (require 'sr-speedbar)
 (global-set-key [(f2)] 'sr-speedbar-toggle)
 ;(global-set-key (kbd "s-r") 'sr-speedbar-refresh-toggle)
+;neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
 ;semantic
 (add-hook 'speedbar-load-hook (lambda () (require 'semantic/sb))
                                (semantic-mode t))
