@@ -259,6 +259,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✠'
 let g:syntastic_style_warning_symbol = '∆'
+let g:syntastic_aggregate_errors = 1
 
 "fcitx.vim
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -271,6 +272,7 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
+
 "jedi
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
