@@ -34,7 +34,7 @@ Bundle 'ivanov/vim-ipython'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Yggdroot/indentLine'
-Bundle 'nanotech/jellybeans.vim'
+Bundle 'chrisbra/vim-diff-enhanced'
 Bundle 'morhetz/gruvbox'
 Bundle 'kien/rainbow_parentheses.vim'
 
