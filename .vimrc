@@ -55,7 +55,7 @@ filetype plugin on
 """"""""""""""""""""""""""""""""
 "General
 """"""""""""""""""""""""""""""""
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 set backspace=indent,eol,start
 set nofoldenable
 set foldlevel=11
@@ -132,7 +132,7 @@ filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Filetype html,xml,xsl source /home/ggarlic/.vim/bundle/closetag.vim/plugin/closetag.vim
 "au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
-au FileType c setlocal omnifunc=ccomplete#Complete cindent | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
+au FileType c setlocal omnifunc=ccomplete#Complete cindent | let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf_c.py'
 au FileType c,cpp inoremap ,, <ESC>A;<CR>
 au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
 au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
