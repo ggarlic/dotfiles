@@ -388,3 +388,6 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 set background=dark 
+
+"patience diff
+let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
