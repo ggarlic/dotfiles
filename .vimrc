@@ -4,13 +4,13 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 set nocompatible
 filetype off
-set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
+set runtimepath+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 "github
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
+Bundle 'VundleVim/Vundle.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'easymotion/vim-easymotion'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -51,6 +51,7 @@ Bundle 'repeat.vim'
 Bundle 'ShowMarks'
 Bundle 'surround.vim'
 Bundle 'winmanager'
+call vundle#end()
 filetype plugin on
 """"""""""""""""""""""""""""""""
 "General
