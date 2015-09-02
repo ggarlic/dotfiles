@@ -37,6 +37,10 @@
 ;disable scrollbar
 (scroll-bar-mode -1)
 
+;highlight trailing spaces and empty lines
+(setq-default show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+
 (require 'python)
 (setq
   python-shell-interpreter "ipython"
@@ -226,6 +230,7 @@ haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
 (defun el-get-haskell-hook ()
   (add-to-list 'ac-sources 'ac-source-haskell))
 (add-hook 'haskell-mode-hook 'el-get-haskell-hook)
+
 ;;ghc
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
