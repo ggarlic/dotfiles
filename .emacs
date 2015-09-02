@@ -34,6 +34,9 @@
 ;use Ctrl with right click to pop it up
 (menu-bar-mode -99)
 
+;disable scrollbar
+(scroll-bar-mode -1)
+
 (require 'python)
 (setq
   python-shell-interpreter "ipython"
