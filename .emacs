@@ -37,9 +37,8 @@
 ;disable scrollbar
 (scroll-bar-mode -1)
 
-;highlight trailing spaces and empty lines
+;hight trailing spaces
 (setq-default show-trailing-whitespace t)
-(setq-default indicate-empty-lines t)
 
 (require 'python)
 (setq
@@ -87,13 +86,14 @@
 ;sr-speedbar
 (require 'sr-speedbar)
 (global-set-key [(f2)] 'sr-speedbar-toggle)
+(speedbar-add-supported-extension ".hs")
 ;(global-set-key (kbd "s-r") 'sr-speedbar-refresh-toggle)
 ;neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 ;semantic
 (add-hook 'speedbar-load-hook (lambda () (require 'semantic/sb))
-                               (semantic-mode t))
+          (semantic-mode t))
 
 ;flycheck
 (add-hook 'after-init-hook 'global-flycheck-mode)
@@ -103,7 +103,7 @@
 (require 'undo-tree)
 (global-undo-tree-mode t)
 (defadvice undo-tree-visualizer-mode (after undo-tree-face activate)
-  (buffer-face-mode))
+           (buffer-face-mode))
 
 ;auto-complete
 (require 'auto-complete)
@@ -130,7 +130,7 @@
 
 ;jedi
 (add-hook 'python-mode-hook 'jedi:setup
-                            (global-set-key (kbd "RET") 'newline-and-indent))
+          (global-set-key (kbd "RET") 'newline-and-indent))
 (setq jedi:complete-on-dot t)      
 (setq jedi:tooltip-method nil)
 
@@ -161,10 +161,11 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'scheme-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
 
 ;; The binary of your interpreter
 (setq scheme-program-name "racket")
- 
+
 ;; This hook lets you use your theme colours instead of quack's ones.
 (defun scheme-mode-quack-hook ()
   (require 'quack)
@@ -186,7 +187,7 @@
 (require 'slime-autoloads)
 (setq inferior-lisp-program "/usr/bin/sbcl")
 (setq slime-lisp-implementations
-         '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
+      '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
 (slime-setup '(slime-fancy))
 ;(setq slime-use-autodoc-mode nil)
 ;(setq slime-contribs '(slime-fancy)) ; almost everything
@@ -208,20 +209,38 @@
 ;;haskell-mode
 ;; haskell-mode
 (require 'haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (setq haskell-process-type 'cabal-repl
-haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
-(define-key haskell-mode-map (kbd "C-x C-d") nil)
-(define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-(define-key haskell-mode-map (kbd "C-c C-b") 'haskell-interactive-switch)
-(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-(define-key haskell-mode-map (kbd "C-c M-.") nil)
-(define-key haskell-mode-map (kbd "C-c C-d") nil)
-(define-key haskell-mode-map (kbd "C-c v c") 'haskell-cabal-visit-file)
- ;; auto-complete for haskell
+      haskell-notify-p t
+      haskell-tags-on-save t
+      haskell-interactive-popup-error nil
+      haskell-process-suggest-remove-import-lines t
+      haskell-process-auto-import-loaded-modules t
+      haskell-process-log t
+      haskell-stylish-on-save nil
+      haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
+
+(eval-after-load 'haskell-mode '(progn
+                                  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+                                  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+                                  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+                                  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+                                  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+                                  (define-key haskell-mode-map (kbd "C-c M-.") nil)
+                                  (define-key haskell-mode-map (kbd "C-c C-d") nil)
+                                  (define-key haskell-mode-map (kbd "C-x C-d") nil)
+                                  (define-key haskell-mode-map (kbd "C-c v c") 'haskell-cabal-visit-file)
+                                  (define-key haskell-mode-map [f9] 'haskell-navigate-imports)))
+(eval-after-load 'haskell-cabal '(progn
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+;; auto-complete for haskell
 (defun el-get-ac-haskell-candidates (prefix)
   (let ((cs (haskell-process-get-repl-completions (haskell-process) prefix)))
     (remove-if (lambda (c) (string= "" c)) cs)))
@@ -230,8 +249,17 @@ haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
 (defun el-get-haskell-hook ()
   (add-to-list 'ac-sources 'ac-source-haskell))
 (add-hook 'haskell-mode-hook 'el-get-haskell-hook)
+(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(eval-after-load 'haskell-mode
+                 '(define-key haskell-mode-map [f9] 'haskell-navigate-imports))
 
 ;;ghc
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+;;sml
+(setq sml/theme 'dark)
+(setq sml/no-confirm-load-theme t)
+(sml/setup)
