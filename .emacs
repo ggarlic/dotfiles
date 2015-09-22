@@ -249,8 +249,6 @@
 (defun el-get-haskell-hook ()
   (add-to-list 'ac-sources 'ac-source-haskell))
 (add-hook 'haskell-mode-hook 'el-get-haskell-hook)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (eval-after-load 'haskell-mode
                  '(define-key haskell-mode-map [f9] 'haskell-navigate-imports))
 
