@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" git clone http://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim/
