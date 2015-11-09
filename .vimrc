@@ -33,6 +33,8 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'chrisbra/vim-diff-enhanced'
 Bundle 'morhetz/gruvbox'
 Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-lua-ftplugin'
 Bundle 'rdnetto/YCM-Generator'
 
 Bundle 'AutoClose--Alves'
