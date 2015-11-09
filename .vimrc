@@ -18,7 +18,6 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-Bundle 'fholgado/minibufexpl.vim'
 Bundle 'hdima/python-syntax'
 Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
@@ -188,14 +187,6 @@ map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --
 "winmanager
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
-
-"minibufexpl 
-noremap <C-Down>  <C-W>j
-noremap <C-Up>    <C-W>k
-noremap <C-Left>  <C-W>h
-noremap <C-Right> <C-W>l
-noremap <C-TAB>   <C-W>w
-noremap <C-S-TAB> <C-W>W
 
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
