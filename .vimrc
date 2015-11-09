@@ -24,9 +24,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'Blackrush/vim-gocode'
-Bundle 'dgryski/vim-godef'
-Bundle 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
+Plugin 'garyburd/go-explorer'
 Bundle 'rking/ag.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'ivanov/vim-ipython'
@@ -144,9 +143,6 @@ au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-"goimport
-let g:gofmt_command = 'goimports'
-au BufWritePre *.go :Fmt
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -389,3 +385,6 @@ set background=dark
 
 "patience diff
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+
+"vim-go
+let g:go_fmt_command = "goimports"
