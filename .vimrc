@@ -41,7 +41,6 @@ Bundle 'Colour-Sampler-Pack'
 Bundle 'c.vim'
 Bundle 'DrawIt'
 Bundle 'fcitx.vim'
-Bundle 'grep.vim'
 Bundle 'matchit.zip'
 Bundle 'ragtag.vim'
 Bundle 'repeat.vim'
@@ -289,6 +288,8 @@ let python_version_2 = 1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
 " The Silver Searcher
 if executable('ag')
+    "use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command =
                 \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
@@ -299,7 +300,7 @@ else
     let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
-
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 "gitgutter
 let g:gitgutter_escape_grep = 1
