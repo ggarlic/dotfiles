@@ -84,7 +84,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
-set splitbelow
+"set splitbelow
 """""""""""""""""""""""""""""""""""
 " Interface and themes
 """""""""""""""""""""""""""""""""""
