@@ -47,7 +47,6 @@ Bundle 'ragtag.vim'
 Bundle 'repeat.vim'
 Bundle 'ShowMarks'
 Bundle 'surround.vim'
-Bundle 'winmanager'
 call vundle#end()
 filetype plugin on
 """"""""""""""""""""""""""""""""
@@ -183,10 +182,6 @@ let Tlist_Enable_Fold_Column = 1
 let Tlist_Show_One_File=1
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
 map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --fields=+aiKSz
-
-"winmanager
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
 
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
