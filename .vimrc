@@ -22,7 +22,6 @@ Bundle 'fholgado/minibufexpl.vim'
 Bundle 'hdima/python-syntax'
 Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'junegunn/vim-emoji'
 Bundle 'terryma/vim-multiple-cursors'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
@@ -381,3 +380,4 @@ let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 
 "vim-go
 let g:go_fmt_command = "goimports"
+
