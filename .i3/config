@@ -9,6 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+new_window 1pixel
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -40,6 +41,7 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+t border normal
 bindsym $mod+u border none
+bindsym $mod+b border toggle
 # 自动把打开的程序放到指定工作区
 assign [class="(?i)firefox"] → 2
 assign [class="(?i)emacs"] → 3
