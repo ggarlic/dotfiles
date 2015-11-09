@@ -71,6 +71,8 @@ set confirm
 set iskeyword+=_,$,@,%,#,-
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set laststatus=2
+set showtabline=2
+set noshowmode
 set sps=best,10
 set backspace=2
 set whichwrap+=<,>,h,l
