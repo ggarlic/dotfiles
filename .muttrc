@@ -12,7 +12,7 @@ set mbox_type=Maildir
 set folder = "~/.mail/"
 set mbox=+gmail/inbox
 set spoolfile=+gmail/inbox
-set postponed=+[gmail]/drafts
+set postponed="+drafts"
 set header_cache="~/.mail/cache/header"
 set mask="!^\\.[^.]"
 unset record
@@ -47,7 +47,7 @@ set edit_headers=yes
 set wait_key=no
 set beep_new=yes
 set check_new=yes
-set recall=no
+#set recall=no
 set mime_forward=yes
 set mime_forward_rest=yes
 
@@ -126,7 +126,7 @@ source "$HOME/.mail/mutt_colors"
 set sidebar_visible=yes
 set sidebar_width=25
 #set sidebar_sort=yes
-mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/linux.arch =postponed
+mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/linux.arch =drafts
 color sidebar_new  red default
 bind index \CK sidebar-prev
 bind index \CJ sidebar-next
