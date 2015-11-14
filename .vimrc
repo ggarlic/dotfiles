@@ -105,7 +105,7 @@ set wildmenu
 set number
 set linebreak
 set cc=81
-hi ColorColumn ctermbg=235 guibg=#2c2d27
+"hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
 """"""""""""""""""""""""""""""""""""""
@@ -398,6 +398,19 @@ let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 
 "vim-go
 let g:go_fmt_command = "goimports"
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
