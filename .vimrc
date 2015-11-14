@@ -9,7 +9,7 @@ call vundle#begin()
 "github
 Bundle 'VundleVim/Vundle.vim'
 Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -144,6 +144,33 @@ au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+au FileType c,cpp,h,java,css,js,nginx,scala,go inoremap  <buffer>  {<CR> {<CR>}<Esc>O
+
+au BufNewFile *.py call ScriptHeader()
+au BufNewFile *.sh call ScriptHeader()
+
+function ScriptHeader()
+    if &filetype == 'python'
+        let header = "#!/usr/bin/env python2"
+        let coding = "# -*- coding:utf-8 -*-"
+        let future = "from __future__ import print_function, division, unicode_literals"
+        let cfg = "# vim: ts=4 sw=4 sts=4 expandtab"
+    elseif &filetype == 'sh'
+        let header = "#!/bin/bash"
+    endif
+    let line = getline(1)
+    if line == header
+        return
+    endif
+    normal m'
+    call append(0,header)
+    if &filetype == 'python'
+        call append(1, coding)
+        call append(2, future)
+        call append(4, cfg)
+    endif
+    normal ''
+endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -191,6 +218,7 @@ map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 "https://github.com/scrooloose/nerdtree/issues/21
+let NERDTreeIgnore = ['\.pyc$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " autoclose and so
@@ -199,8 +227,6 @@ let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]
 "nerd commenter
 let NERDShutUp=1
 
-"powerline
-let g:Powerline_symbols = 'fancy'
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -373,3 +399,9 @@ let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 "vim-go
 let g:go_fmt_command = "goimports"
 
+"vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+"gruvbox
+let g:gruvbox_contrast_dark="dark"
