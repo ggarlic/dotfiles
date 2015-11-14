@@ -96,7 +96,6 @@ fi
 
 alias m='mutt'
 
-
 #mkdir,cd into it
 mkcd(){
 	mkdir -p "$*"
@@ -110,6 +109,8 @@ export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work h
 #stty stop ^J
 stty stop undef
 
-
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
+
+#gruvbox
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
