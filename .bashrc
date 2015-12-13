@@ -112,5 +112,9 @@ stty stop undef
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
+#haskell
+export PATH=$HOME/.local/bin:$PATH
+eval "$(stack --bash-completion-script stack)"
+
 #gruvbox
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
