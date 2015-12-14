@@ -24,6 +24,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
+     extra-langs
      better-defaults
      emacs-lisp
      git
@@ -38,10 +39,10 @@ values."
      (c-c++ :variables c-c++-enable-clang-support t)
      colors
      (haskell :variables
-              haskell-enable-ghc-mod-support t
-              haskell-enable-shm-support t
-              haskell-enable-hindent-style "johan-tibell"
-              haskell-enable-ghci-ng-support t)
+        haskell-enable-ghc-mod-support t
+        haskell-enable-shm-support t
+        haskell-enable-hindent-style "johan-tibell"
+        haskell-enable-ghci-ng-support t)
      go
      html
      lua
@@ -212,6 +213,8 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+(global-linum-mode t)
+  (turn-on-fci-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
