@@ -95,6 +95,9 @@ set cursorline
 colorscheme gruvbox
 syntax enable
 "set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+if has("gui_macvim")
+    set macligatures
+endif
 set guifont="DejaVu Sans Mono"\ \ 10
 set scrolloff=3
 set guioptions-=m
