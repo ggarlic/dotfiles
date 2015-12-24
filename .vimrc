@@ -92,6 +92,7 @@ set dictionary+=/usr/share/dict/web2
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
+let g:gruvbox_italic=1
 colorscheme gruvbox
 syntax enable
 "set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
