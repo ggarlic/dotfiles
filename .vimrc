@@ -26,7 +26,6 @@ Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Bundle 'rking/ag.vim'
 Bundle 'sjl/gundo.vim'
-Bundle 'ivanov/vim-ipython'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Yggdroot/indentLine'
@@ -155,10 +154,7 @@ au BufNewFile *.sh call ScriptHeader()
 
 function ScriptHeader()
     if &filetype == 'python'
-        let header = "#!/usr/bin/env python2"
-        let coding = "# -*- coding:utf-8 -*-"
-        let future = "from __future__ import print_function, division, unicode_literals"
-        let cfg = "# vim: ts=4 sw=4 sts=4 expandtab"
+        let header = "# -*- coding:utf-8 -*-"
     elseif &filetype == 'sh'
         let header = "#!/bin/bash"
     endif
@@ -168,11 +164,6 @@ function ScriptHeader()
     endif
     normal m'
     call append(0,header)
-    if &filetype == 'python'
-        call append(1, coding)
-        call append(2, future)
-        call append(4, cfg)
-    endif
     normal ''
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""
