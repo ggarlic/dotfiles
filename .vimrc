@@ -39,11 +39,7 @@ Bundle 'rdnetto/YCM-Generator'
 Bundle 'AutoClose--Alves'
 Bundle 'a.vim'
 Bundle 'closetag.vim'
-Bundle 'Colour-Sampler-Pack'
-Bundle 'c.vim'
-Bundle 'DrawIt'
 Bundle 'fcitx.vim'
-Bundle 'matchit.zip'
 Bundle 'ragtag.vim'
 Bundle 'repeat.vim'
 Bundle 'ShowMarks'
@@ -290,6 +286,7 @@ let g:jedi#goto_definitions_command = "<leader>pd"
 let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
+
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
 "let g:UltiSnipsSnippetsDir = $HOME . '/dotfiles/vim/UltiSnips'
