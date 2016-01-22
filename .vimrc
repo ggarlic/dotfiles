@@ -1,51 +1,46 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-set nocompatible
-filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+let g:python_host_prog='/usr/bin/python2.7'
+call plug#begin('~/.vim/plugged')
 "github
-Bundle 'VundleVim/Vundle.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'tpope/vim-fugitive'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'hdima/python-syntax'
-Bundle 'majutsushi/tagbar'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'terryma/vim-multiple-cursors'
-Plugin 'fatih/vim-go'
-Plugin 'garyburd/go-explorer'
-Bundle 'rking/ag.vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'Yggdroot/indentLine'
-Bundle 'chrisbra/vim-diff-enhanced'
-Bundle 'morhetz/gruvbox'
-Bundle 'kien/rainbow_parentheses.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-lua-ftplugin'
-Bundle 'rdnetto/YCM-Generator'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang ./install.sh --clang-completer --system-libclang --system-boost'}
+Plug 'Valloric/MatchTagAlways'
+Plug 'tpope/vim-fugitive'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'hdima/python-syntax'
+Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'fatih/vim-go'
+Plug 'garyburd/go-explorer'
+Plug 'rking/ag.vim'
+Plug 'mbbill/undotree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'davidhalter/jedi-vim'
+Plug 'chrisbra/vim-diff-enhanced'
+Plug 'morhetz/gruvbox'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/a.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'justinmk/vim-gtfo'
+Plug 'lepture/vim-jinja'
+Plug 'cespare/vim-toml'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'zaiste/tmux.vim'
+Plug 'jrosiek/vim-mark'
+Plug 'cohama/lexima.vim'
 
-Bundle 'AutoClose--Alves'
-Bundle 'a.vim'
-Bundle 'closetag.vim'
-Bundle 'fcitx.vim'
-Bundle 'ragtag.vim'
-Bundle 'repeat.vim'
-Bundle 'ShowMarks'
-Bundle 'surround.vim'
-call vundle#end()
-filetype plugin on
+call plug#end()
 """"""""""""""""""""""""""""""""
 "General
 """"""""""""""""""""""""""""""""
@@ -56,7 +51,7 @@ set foldlevel=11
 set foldmethod=syntax
 set foldnestmax=10
 set nobackup
-set completeopt=longest,menu,preview
+set completeopt=longest,menu
 set display=lastline
 set nocompatible
 set autochdir
@@ -73,14 +68,18 @@ set noshowmode
 set sps=best,10
 set backspace=2
 set whichwrap+=<,>,h,l
-set mouse=a
 set selection=exclusive
-set selectmode=mouse,key
 set report=0
 set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
+
+if has('mouse')
+    set mouse=a
+    set selectmode=mouse,key
+    set nomousehide
+endif
 "set splitbelow
 """""""""""""""""""""""""""""""""""
 " Interface and themes
@@ -90,7 +89,6 @@ set cursorline
 let g:gruvbox_italic=1
 colorscheme gruvbox
 syntax enable
-"set statusline=%<%h%m%r\ %F%=[%{&filetype},%{&fileencoding},%{&fileformat}]%k\ %-14.(%l/%L,%c%V%)\ %P\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 if has("gui_macvim")
     set macligatures
 endif
@@ -130,8 +128,6 @@ filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au Filetype html,xml,xsl source /home/ggarlic/.vim/bundle/closetag.vim/plugin/closetag.vim
-"au FileType c setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_c.py'
 au FileType c setlocal omnifunc=ccomplete#Complete cindent | let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf_c.py'
 au FileType c,cpp inoremap ,, <ESC>A;<CR>
 au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
@@ -143,25 +139,8 @@ au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-au FileType c,cpp,h,java,css,js,nginx,scala,go inoremap  <buffer>  {<CR> {<CR>}<Esc>O
-
-au BufNewFile *.py call ScriptHeader()
-au BufNewFile *.sh call ScriptHeader()
-
-function ScriptHeader()
-    if &filetype == 'python'
-        let header = "# -*- coding:utf-8 -*-"
-    elseif &filetype == 'sh'
-        let header = "#!/bin/bash"
-    endif
-    let line = getline(1)
-    if line == header
-        return
-    endif
-    normal m'
-    call append(0,header)
-    normal ''
-endfunction
+"now i use lexima to do this
+"au FileType c,cpp,h,java,css,js,nginx,scala,go inoremap  <buffer>  {<CR> {<CR>}<Esc>O
 """"""""""""""""""""""""""""""""""""""""""""""""
 "key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -187,10 +166,34 @@ map <silent> <C-F3> :if &guioptions =~# 'T' <Bar>
     \endif<CR>
 "use spacebar to fold/unfold
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+vnoremap <space> zf
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 "write read-only files
 cnoremap sudow w !sudo tee % >/dev/null
+
+" Toggle paste mode before pasting
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -212,16 +215,11 @@ let NERDTreeChDirMode=2
 let NERDTreeIgnore = ['\.pyc$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" autoclose and so
-let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"] 
-
 "nerd commenter
 let NERDShutUp=1
 
-
 "tagbar
 nmap <F8> :TagbarToggle<CR>
-
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -249,8 +247,6 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
     \ }
-"showmarks
-let g:showmarks_enable = 0
 
 "syntastic
 let g:syntastic_check_on_open = 1
@@ -258,16 +254,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✠'
-let g:syntastic_style_warning_symbol = '∆'
+let g:syntastic_style_warning_symbol = '≈'
 let g:syntastic_aggregate_errors = 1
 
-"fcitx.vim
-set timeout timeoutlen=1000 ttimeoutlen=100
-
 "ycm
-let g:ycm_add_preview_to_compleopt = 1
+"let g:ycm_add_preview_to_compleopt = 1
 let g:ycm_key_invoke_completion = '<C-.>'
-let g:ycm_autoclose_preview_window_after_completion=1
+"let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_register_as_syntastic_checker = 1
@@ -326,51 +319,7 @@ let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 "gitgutter
 let g:gitgutter_escape_grep = 1
 
-"gundo
-nnoremap <F5> :GundoToggle<CR>
-
-" Run current file
-func! RunSrc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
-    elseif &filetype == 'cpp' || &filetype == 'hpp'
-        exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
-    elseif &filetype == 'perl'
-        exec "!astyle --style=gnu --suffix=none %"
-    elseif &filetype == 'py'||&filetype == 'python'
-        exec "!python %"
-    elseif &filetype == 'java'
-        exec "!astyle --style=java --suffix=none %"
-    endif
-    exec "e! %"
-endfunc
-noremap <silent><Leader>r :call RunSrc()<CR>
-
-" Toggle paste mode before pasting
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
-
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-""==== indentLine ====
+"indentLine
 if has("gui_running")
 let g:indentLine_char = '|'
 else
@@ -378,12 +327,30 @@ let g:indentLine_char = '¦'
 endif
 
 "rainbow_parenthese
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
-set background=dark 
 
 "patience diff
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
@@ -397,9 +364,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>K <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
@@ -409,4 +374,19 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "gruvbox
+set background=dark 
 let g:gruvbox_contrast_dark="dark"
+
+"vim-gtfo
+let g:gtfo#terminals = {'unix': 'termite -d'}
+
+"undotree
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
+"easymotion
+map <Leader> <Plug>(easymotion-prefix)
+let g:EasyMotion_smartcase = 1
+
