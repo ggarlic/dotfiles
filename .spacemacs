@@ -39,7 +39,6 @@ values."
      (c-c++ :variables c-c++-enable-clang-support t)
      colors
      (haskell :variables
-        haskell-enable-ghc-mod-support t
         haskell-enable-shm-support t
         haskell-enable-hindent-style "johan-tibell"
         haskell-enable-ghci-ng-support t)
@@ -48,6 +47,7 @@ values."
      lua
      racket
      ;;ycmd
+     eyebrowse
      themes-megapack
      )
    ;; List of additional packages that will be installed without being
