@@ -31,6 +31,10 @@ case "$TERM" in
         TERM=xterm-256color
         ;;
 esac
+if [[ $TERM == xterm-termite ]]; then
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -117,4 +121,4 @@ export PATH=$HOME/.local/bin:$PATH
 eval "$(stack --bash-completion-script stack)"
 
 #gruvbox
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
