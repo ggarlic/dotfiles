@@ -24,8 +24,8 @@ set envelope_from=yes
 set use_from=yes
 set realname="yangbo"
 set from=yangbo.ggarlic@gmail.com
-macro generic "<esc>1" ":set from=yangbo.ggarlic@gmail.com"
-macro generic "<esc>2" ":set from=yangbo@admaster.com.cn"
+macro generic "<esc>1" ":set from=yangbo.ggarlic@gmail.com realname=ggarlic"
+macro generic "<esc>2" ":set from=yangbo@admaster.com.cn realname='Yangbo 杨博'"
 set include=yes 
 set indent_str="> "
 set signature = ~/.mail/mutt_signature
