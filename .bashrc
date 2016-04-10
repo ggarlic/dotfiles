@@ -120,6 +120,10 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
 eval "$(stack --bash-completion-script stack)"
 
+#the fuck
+alias fuck='$(thefuck $(fc -ln -1))'
+# You can use whatever you want as an alias, like for mondays:
+alias FUCK='fuck'
 #gruvbox
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
