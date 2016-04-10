@@ -37,11 +37,13 @@ values."
      syntax-checking
      version-control
      (c-c++ :variables c-c++-enable-clang-support t)
+     python
      colors
      (haskell :variables
-        haskell-enable-shm-support t
+        ;;haskell-enable-shm-support t
         haskell-enable-hindent-style "johan-tibell"
-        haskell-enable-ghci-ng-support t)
+        haskell-enable-ghci-ng-support t
+        haskell-process-type 'ghci)
      go
      html
      lua
@@ -49,6 +51,7 @@ values."
      ;;ycmd
      eyebrowse
      themes-megapack
+     scala
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
