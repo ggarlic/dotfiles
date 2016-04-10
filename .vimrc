@@ -68,7 +68,6 @@ set noshowmode
 set sps=best,10
 set backspace=2
 set whichwrap+=<,>,h,l
-set selection=exclusive
 set report=0
 set encoding=utf-8
 set fileencoding=utf-8
