@@ -52,7 +52,7 @@ set mime_forward=yes
 set mime_forward_rest=yes
 
 #faster
-set header_cache="~/mail/.header_cache/"
+set header_cache="~/.mail/.header_cache/"
 set maildir_header_cache_verify=no 
 # Charset settings
 set rfc2047_parameters=yes
