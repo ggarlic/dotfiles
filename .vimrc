@@ -420,3 +420,5 @@ endif
 map <Leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_smartcase = 1
 
+"lua
+let g:lua_complete_omni = 1
