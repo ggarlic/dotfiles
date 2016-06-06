@@ -42,8 +42,9 @@ values."
      (haskell :variables
         ;;haskell-enable-shm-support t
         haskell-enable-hindent-style "johan-tibell"
-        haskell-enable-ghci-ng-support t
-        haskell-process-type 'ghci)
+        ;;haskell-enable-ghci-ng-support t
+        ;;haskell-process-type 'ghci
+        )
      go
      html
      lua
