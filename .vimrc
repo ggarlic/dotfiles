@@ -285,6 +285,7 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
+let g:ycm_confirm_extra_conf = 0
 
 "jedi
 let g:jedi#auto_vim_configuration = 0
