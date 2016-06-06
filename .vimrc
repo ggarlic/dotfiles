@@ -23,7 +23,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'morhetz/gruvbox'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'eapache/rainbow_parentheses.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
@@ -39,6 +39,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
@@ -47,9 +48,8 @@ call plug#end()
 set clipboard^=unnamed,unnamedplus
 set backspace=indent,eol,start
 set nofoldenable
-set foldlevel=11
-set foldmethod=syntax
-set foldnestmax=10
+set foldlevel=99
+"set foldnestmax=10
 set nobackup
 set completeopt=longest,menu
 set display=lastline
@@ -87,7 +87,7 @@ set t_Co=256
 set cursorline
 let g:gruvbox_italic=1
 colorscheme gruvbox
-syntax enable
+"syntax enable --no need for vim-plug
 if has("gui_macvim")
     set macligatures
 endif
@@ -123,13 +123,11 @@ set softtabstop=4
 set expandtab
 set smarttab
 set formatoptions+=mM
-filetype indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType c setlocal omnifunc=ccomplete#Complete cindent | let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf_c.py'
 au FileType c,cpp inoremap ,, <ESC>A;<CR>
-au FileType cpp setlocal omnifunc=ccomplete#Complete cindent tags+=/home/ggarlic/.vim/systags; | let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf_cpp.py'
+au FileType c,cpp setlocal omnifunc=ccomplete#Complete cindent foldmethod=syntax tags+=/home/ggarlic/.vim/systags;
 au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
 au FileType python inoremap ,, <ESC>A:<CR>
 au FileType go setlocal foldmethod=indent
