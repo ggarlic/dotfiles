@@ -195,14 +195,6 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定
-let Tlist_Sort_Type = "name"
-let Tlist_Use_Right_Window = 1
-let Tlist_Compart_Format = 1
-let Tlist_Exist_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 0
-let Tlist_Enable_Fold_Column = 1
-let Tlist_Show_One_File=1
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
 map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --fields=+aiKSz
 
 "nerdtree
@@ -243,7 +235,7 @@ let g:tagbar_type_go = {
     \ },
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
-    \ }
+\ }
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
     \ 'ctagsargs' : '-x -c -o-',
