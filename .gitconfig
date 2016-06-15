@@ -25,3 +25,5 @@
 	fetchJobs = 10
 [core]
     pager = diff-highlight | less
+[commit]
+	gpgsign = true
