@@ -20,3 +20,7 @@
     tool = vimdiff
 [push]
 	default = simple
+[submodule]
+	fetchJobs = 10
+[core]
+    pager = diff-highlight | less
