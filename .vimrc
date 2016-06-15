@@ -399,7 +399,7 @@ set background=dark
 let g:gruvbox_contrast_dark="dark"
 
 "vim-gtfo
-let g:gtfo#terminals = {'unix': 'termite -d'}
+let g:gtfo#terminals = {'unix': 'termite -d', 'mac': 'iterm'}
 
 "undotree
 if has("persistent_undo")
