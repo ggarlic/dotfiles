@@ -372,6 +372,7 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+let g:bold_parentheses = 0
 
 "patience diff
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
