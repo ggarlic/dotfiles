@@ -1,6 +1,7 @@
 [user]
     name = yangbo
     email = yangbo@admaster.com.cn
+    signingkey = 0x42E03E35EB0FFDFF
 [alias]  
     co = checkout  
     ci = commit
