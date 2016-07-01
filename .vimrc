@@ -17,7 +17,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go'
 Plug 'garyburd/go-explorer'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim'
@@ -414,3 +414,10 @@ let g:EasyMotion_smartcase = 1
 
 "lua
 let g:lua_complete_omni = 1
+
+"ack.vim
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
