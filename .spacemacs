@@ -40,10 +40,8 @@ values."
      python
      colors
      (haskell :variables
-        ;;haskell-enable-shm-support t
         haskell-enable-hindent-style "johan-tibell"
-        ;;haskell-enable-ghci-ng-support t
-        ;;haskell-process-type 'ghci
+        haskell-completion-backend 'intero
         )
      go
      html
