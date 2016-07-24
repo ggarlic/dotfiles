@@ -46,7 +46,8 @@ values."
      go
      html
      lua
-     racket
+     ;;racket
+     scheme
      ;;ycmd
      eyebrowse
      themes-megapack
@@ -260,6 +261,11 @@ layers configuration. You are free to put any user code."
   (turn-on-fci-mode)
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
         "mht"  'ghc-show-type)
+  (setq geiser-active-implementations '(racket))
+  (setq geiser-mode-smart-tab-p t
+        geiser-repl-autodoc-p t
+        geiser-repl-history-filename "~/.emacs.d/geiser-history"
+        geiser-repl-query-on-kill-p nil)
   (when (configuration-layer/layer-usedp 'haskell)
     (add-hook 'haskell-interactive-mode-hook
               (lambda ()
