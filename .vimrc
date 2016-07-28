@@ -85,8 +85,6 @@ endif
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
-let g:gruvbox_italic=1
-colorscheme gruvbox
 "syntax enable --no need for vim-plug
 if has("gui_macvim")
     set macligatures
@@ -396,7 +394,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "gruvbox
-set background=dark 
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
 let g:gruvbox_contrast_dark="dark"
 
 "vim-gtfo
