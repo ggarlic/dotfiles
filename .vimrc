@@ -73,6 +73,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
+set ttimeoutlen=10
 
 if has('mouse')
     set mouse=a
@@ -267,7 +268,7 @@ let g:tagbar_type_haskell = {
 \ }
 
 "syntastic
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
