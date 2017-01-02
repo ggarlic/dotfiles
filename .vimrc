@@ -40,6 +40,7 @@ Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
