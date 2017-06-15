@@ -213,7 +213,7 @@ map <F4> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 "https://github.com/scrooloose/nerdtree/issues/21
 let NERDTreeIgnore = ['\.pyc$']
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "nerd commenter
 let NERDShutUp=1
@@ -285,7 +285,7 @@ let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_register_as_syntastic_checker = 1
+"let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
 let g:ycm_confirm_extra_conf = 0
 
@@ -324,19 +324,21 @@ let python_version_2 = 1
 "ctrlp
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
 " The Silver Searcher
-if executable('ag')
-    "use ag over grep
+if executable('rg')
+    set grepprg=rg\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    let g:ctrlp_use_caching = 0
+elseif executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command =
-                \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
-    " ag is fast enough that CtrlP doesn't need to cache
+        \ 'rg %s --files -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
     let g:ctrlp_use_caching = 0
 else
-    " Fall back to using git ls-files if Ag is not available
+    " Fall back to using git ls-files if rg&ag aren't available
     let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
+let g:ctrlp_reuse_window = 'startify'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 "gitgutter
@@ -396,4 +398,5 @@ let g:EasyMotion_smartcase = 1
 let g:lua_complete_omni = 1
 
 "ack.vim
-let g:ackprg = 'ag --vimgrep --smart-case'
+"let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'rg --vimgrep --no-heading'
