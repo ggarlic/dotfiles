@@ -43,6 +43,7 @@ values."
      git
      markdown
      org
+     helm
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -61,10 +62,15 @@ values."
         haskell-enable-hindent-style "johan-tibell"
         haskell-completion-backend 'intero
         )
-     go
+     (go :variables
+        go-use-gometalinter t
+        gofmt-command "goimports"
+        go-tab-width 4
+     )
      html
      lua
      ;;racket
+     rust
      scheme
      semantic
      ycmd
@@ -115,7 +121,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -153,12 +159,7 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(gruvbox
                          spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -222,7 +223,7 @@ values."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
+   dotspacemacs-helm-resize t
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
    dotspacemacs-helm-no-header nil
@@ -346,7 +347,8 @@ you should place your code here."
   (speedbar-add-supported-extension ".hs")
   (mac-auto-operator-composition-mode)
   (setq ycmd-server-command '("python" "/Users/ggarlic/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
-  (add-hook 'c++-mode-hook 'ycmd-mode)
+  (add-hook 'c-mode-hook 'ycmd-mode)
+  (setq ycmd-force-semantic-completion t)
   (setq flycheck-scalastyle-jar
    "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
   (setq flycheck-scalastylerc
