@@ -357,6 +357,13 @@ you should place your code here."
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
   (setq ycmd-force-semantic-completion t)
+
+  ;;https://github.com/syl20bnr/spacemacs/issues/7508
+  ;;https://github.com/commercialhaskell/intero/issues/126#issuecomment-228612696
+  ;; intero removes hlint by default, let get it back
+  (with-eval-after-load 'intero
+    (with-eval-after-load 'flycheck
+      (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
 ;;  (setq flycheck-scalastyle-jar
 ;;   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
 ;;  (setq flycheck-scalastylerc
