@@ -43,7 +43,8 @@ values."
      git
      markdown
      org
-     helm
+     ;;helm
+     ivy
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -61,7 +62,7 @@ values."
      (haskell :variables
         haskell-enable-hindent-style "johan-tibell"
         haskell-completion-backend 'intero
-        )
+    )
      (go :variables
         go-use-gometalinter t
         gofmt-command "goimports"
