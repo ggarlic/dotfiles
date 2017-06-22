@@ -62,7 +62,7 @@ values."
      (haskell :variables
         haskell-enable-hindent-style "johan-tibell"
         haskell-completion-backend 'intero
-    )
+     )
      (go :variables
         go-use-gometalinter t
         gofmt-command "goimports"
@@ -76,17 +76,19 @@ values."
      semantic
      ycmd
      themes-megapack
-     (scala :variables
-        scala-enable-eldoc t
-        scala-auto-insert-asterisk-in-comments t
-        scala-use-unicode-arrows t
-        )
+;;     (scala :variables
+;;        scala-enable-eldoc t
+;;        scala-auto-insert-asterisk-in-comments t
+;;        scala-use-unicode-arrows t
+;;     )
+     imenu-list
+     theming
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(all-the-icons)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -303,7 +305,7 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -323,6 +325,10 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq theming-modifications
+        '((gruvbox
+           (font-lock-string-face :slant italic)
+           (font-lock-comment-face :slant italic))))
   )
 
 (defun dotspacemacs/user-config ()
@@ -349,11 +355,14 @@ you should place your code here."
   (mac-auto-operator-composition-mode)
   (setq ycmd-server-command '("python" "/Users/ggarlic/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
   (add-hook 'c-mode-hook 'ycmd-mode)
+  (add-hook 'c++-mode-hook 'ycmd-mode)
   (setq ycmd-force-semantic-completion t)
-  (setq flycheck-scalastyle-jar
-   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
-  (setq flycheck-scalastylerc
-   "/usr/local/etc/scalastyle_config.xml")
+;;  (setq flycheck-scalastyle-jar
+;;   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
+;;  (setq flycheck-scalastylerc
+;;   "/usr/local/etc/scalastyle_config.xml")
+  (setq neo-show-hidden-files nil)
+  (setq neo-theme 'icons)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
