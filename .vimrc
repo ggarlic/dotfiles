@@ -282,6 +282,7 @@ let g:tagbar_type_haskell = {
 
 "ycm
 "let g:ycm_add_preview_to_compleopt = 1
+let g:ycm_python_binary_path = '/usr/local/bin/python2'
 let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
@@ -374,6 +375,7 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "gruvbox
