@@ -41,6 +41,7 @@ Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
+Plug 'google/vim-searchindex'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
