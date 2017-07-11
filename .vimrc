@@ -372,6 +372,8 @@ au FileType go nmap <Leader>K <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>cr <Plug>(go-callers)
+au FileType go nmap <Leader>ce <Plug>(go-callees)
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
