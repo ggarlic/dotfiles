@@ -333,7 +333,7 @@ if executable('rg')
 elseif executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command =
-        \ 'rg %s --files -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+        \ 'ag %s -l --nocolor -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
     let g:ctrlp_use_caching = 0
 else
     " Fall back to using git ls-files if rg&ag aren't available
@@ -404,4 +404,10 @@ let g:lua_complete_omni = 1
 
 "ack.vim
 "let g:ackprg = 'ag --vimgrep --smart-case'
-let g:ackprg = 'rg --vimgrep --no-heading'
+"let g:ackprg = 'rg --vimgrep --no-heading'
+
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading'
+elseif executable('ag')
+    let g:ackprg = 'ag --vimgrep --smart-case'
+endif
