@@ -1,4 +1,4 @@
-let g:python_host_prog='/usr/bin/python2.7'
+"let g:python_host_prog='/usr/bin/python2.7'
 call plug#begin('~/.vim/plugged')
 "github
 Plug 'ctrlpvim/ctrlp.vim'
@@ -17,15 +17,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go'
 Plug 'garyburd/go-explorer'
-Plug 'mileszs/ack.vim'
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-lua-ftplugin'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-lua-ftplugin'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
@@ -42,6 +41,8 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'google/vim-searchindex'
+Plug 'google/vim-searchindex'
+Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
@@ -402,12 +403,12 @@ let g:EasyMotion_smartcase = 1
 "lua
 let g:lua_complete_omni = 1
 
-"ack.vim
-"let g:ackprg = 'ag --vimgrep --smart-case'
-"let g:ackprg = 'rg --vimgrep --no-heading'
-
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading'
-elseif executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
-endif
+"ctrlsf
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
