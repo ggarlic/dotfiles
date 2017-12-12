@@ -41,7 +41,6 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'google/vim-searchindex'
-Plug 'google/vim-searchindex'
 Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
@@ -95,8 +94,10 @@ if has("gui_macvim")
 endif
 set guifont="DejaVu Sans Mono"\ \ 10
 set scrolloff=3
-set guioptions-=m
-set guioptions-=T
+set go-=m
+set go-=T
+set go-=r
+set go-=L
 set ruler
 set title
 set wildmenu
@@ -404,11 +405,11 @@ let g:EasyMotion_smartcase = 1
 let g:lua_complete_omni = 1
 
 "ctrlsf
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+nmap     <Leader><C-F>f <Plug>CtrlSFPrompt
+vmap     <Leader><C-F>f <Plug>CtrlSFVwordPath
+vmap     <Leader><C-F>F <Plug>CtrlSFVwordExec
+nmap     <Leader><C-F>n <Plug>CtrlSFCwordPath
+nmap     <Leader><C-F>p <Plug>CtrlSFPwordPath
+nnoremap <Leader><C-F>o :CtrlSFOpen<CR>
+nnoremap <Leader><C-F>t :CtrlSFToggle<CR>
+inoremap <Leader><C-F>t <Esc>:CtrlSFToggle<CR>
