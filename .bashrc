@@ -35,6 +35,7 @@ if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
 fi
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -98,7 +99,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-alias m='mutt'
+alias m='neomutt'
 
 #mkdir,cd into it
 mkcd(){
