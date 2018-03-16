@@ -130,18 +130,14 @@ source "$HOME/.mail/mutt_colors"
 ###mutt-sidebar
 set sidebar_visible=yes
 set sidebar_width=25
-#set sidebar_sort=yes
-mailboxes ! =gmail/inbox =work/inbox =gmail/admaster =gmail/social =gmail/python =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =gmail/linux.arch =drafts
+mailboxes ! =gmail/inbox =work/inbox =gmail/social =gmail/python =gmail/golang =gmail/haskell =gmail/scheme =gmail/linux.shlug =gmail/xdlinux =gmail/linux.xiyou =drafts
 set mail_check_stats
 set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
 color sidebar_new  red default
-bind index \CK sidebar-prev
-bind index \CJ sidebar-next
-bind index \CL sidebar-open
-bind pager \CK sidebar-prev
-bind pager \CJ sidebar-next
-bind pager \CL sidebar-open
-# I don't need these.  just for documentation purposes.  See below.
+bind pager,index \CP sidebar-prev
+bind pager,index \CN sidebar-next
+bind pager,index \CL sidebar-open
+# I don't need these. just for documentation purposes.  See below.
 # sidebar-scroll-up
 # sidebar-scroll-down
  
@@ -153,3 +149,6 @@ bind index B bounce-message
 
 #pgp
 source ~/.mail/crypto
+
+#notmuch
+source ~/.mail/notmuchrc
