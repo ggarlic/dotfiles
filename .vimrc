@@ -1,18 +1,16 @@
 "let g:python_host_prog='/usr/bin/python2.7'
 call plug#begin('~/.vim/plugged')
 "github
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python install.py --clang-completer'}
+Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python']}
 Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'hdima/python-syntax'
-Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go'
@@ -25,7 +23,7 @@ Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-lua-ftplugin'
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+"Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -40,8 +38,13 @@ Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
-Plug 'google/vim-searchindex'
+"Plug 'tweekmonster/startuptime.vim'
 Plug 'dyng/ctrlsf.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'
+"Plug 'ludovicchabant/vim-gutentags'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
@@ -57,7 +60,7 @@ set completeopt=longest,menu
 set display=lastline
 set nocompatible
 set autochdir
-set tags=tags;
+set tags=./.tags;,.tags
 set sessionoptions-=curdir
 set autoread
 set history=1000
@@ -103,7 +106,7 @@ set title
 set wildmenu
 set number
 set linebreak
-set cc=81
+set cc=80
 "hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
@@ -131,12 +134,17 @@ set formatoptions+=mM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType c,cpp inoremap ,, <ESC>A;<CR>
 au FileType c,cpp setlocal omnifunc=ccomplete#Complete cindent foldmethod=syntax tags+=/home/ggarlic/.vim/systags;
-au FileType python setlocal omnifunc=pythoncomplete#Complete | setlocal foldmethod=indent
+
+"if has('python3')
+    "au FileType python setlocal omnifunc=python3complete#Complete
+"else
+    "au FileType python setlocal omnifunc=pythoncomplete#Complete
+"endif
+
+au FileType python setlocal foldmethod=indent
 au FileType python inoremap ,, <ESC>A:<CR>
+au BufWritePre *.py :%s/\s\+$//e
 au FileType go setlocal foldmethod=indent
-au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 "now i use lexima to do this
@@ -195,22 +203,9 @@ endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""
-" CTags的设定
-map <C-F12> :!ctags -R --extra=+f --languages=c --langmap=c:+.h --c-kinds=+px --fields=+aiKSz
-
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
@@ -221,89 +216,38 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "nerd commenter
 let NERDShutUp=1
 
-"tagbar
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-let g:tagbar_type_haskell = {
-    \ 'ctagsbin'  : 'hasktags',
-    \ 'ctagsargs' : '-x -c -o-',
-    \ 'kinds'     : [
-        \  'm:modules:0:1',
-        \  'd:data: 0:1',
-        \  'd_gadt: data gadt:0:1',
-        \  't:type names:0:1',
-        \  'nt:new types:0:1',
-        \  'c:classes:0:1',
-        \  'cons:constructors:1:1',
-        \  'c_gadt:constructor gadt:1:1',
-        \  'c_a:constructor accessors:1:1',
-        \  'ft:function types:1:1',
-        \  'fi:function implementations:0:1',
-        \  'o:others:0:1'
-    \ ],
-    \ 'sro'        : '.',
-    \ 'kind2scope' : {
-        \ 'm' : 'module',
-        \ 'c' : 'class',
-        \ 'd' : 'data',
-        \ 't' : 'type'
-    \ },
-    \ 'scope2kind' : {
-        \ 'module' : 'm',
-        \ 'class'  : 'c',
-        \ 'data'   : 'd',
-        \ 'type'   : 't'
-    \ }
-\ }
-
 "ycm
 "let g:ycm_add_preview_to_compleopt = 1
-let g:ycm_python_binary_path = '/usr/local/bin/python2'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+"let g:ycm_python_binary_path = '/usr/local/opt/python@2/bin/python2'
 let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 "let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
+"let g:ycm_global_ycm_extra_conf = '/Users/ggarlic/.vim/default_cpp.conf'
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_filetype_whitelist = { 
+    \ 'c': 1 ,
+    \ 'cpp': 1,
+    \ 'python': 1
+    \}
 
 "jedi
+let g:jedi#force_py_version = 3
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#completions_enabled = 0
-let g:jedi#completions_command = ""
-let g:jedi#show_call_signatures = "1"
+"let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "2"
 
 let g:jedi#goto_assignments_command = "<leader>pa"
 let g:jedi#goto_definitions_command = "<leader>pd"
-let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
 
@@ -316,37 +260,14 @@ set <m-k>=k
 set <m-.>=.
 let g:UltiSnipsExpandTrigger = "<C-j>"
 let g:UltiSnipsListSnippets = "<m-.>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 "let g:snips_author = 'Strahinja Val Markovic'"
 
 "python.vim
 let python_highlight_all = 1
-let python_version_2 = 1
-
-"ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
-" The Silver Searcher
-if executable('rg')
-    set grepprg=rg\ --color=never
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    let g:ctrlp_use_caching = 0
-elseif executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command =
-        \ 'ag %s -l --nocolor -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
-    let g:ctrlp_use_caching = 0
-else
-    " Fall back to using git ls-files if rg&ag aren't available
-    let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
-endif
-let g:ctrlp_reuse_window = 'startify'
-let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
-
-"gitgutter
-let g:gitgutter_escape_grep = 1
+"let python_version_2 = 0
 
 "indentLine
 if has("gui_running")
@@ -363,6 +284,7 @@ let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 
 "vim-go
 let g:go_fmt_command = "goimports"
+"let g:go_fmt_autosave = 0
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -381,6 +303,7 @@ au FileType go nmap <Leader>ce <Plug>(go-callees)
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 "gruvbox
 set background=dark
@@ -413,3 +336,49 @@ nmap     <Leader><C-F>p <Plug>CtrlSFPwordPath
 nnoremap <Leader><C-F>o :CtrlSFOpen<CR>
 nnoremap <Leader><C-F>t :CtrlSFToggle<CR>
 inoremap <Leader><C-F>t <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_selected_line_hl = 'op'
+
+
+"rust
+set hidden
+let g:rustfmt_autosave = 1
+let g:racer_cmd = "/Users/ggarlic/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" vim-gutentags
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
+
+"leaderf function
+noremap <F2> :LeaderfFunction!<cr>
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_ShowRelativePath = 0
+let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_HideHelp = 1
+let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
+let g:Lf_NormalMap = {
+	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+	\ }
+
+" echodoc
+let g:echodoc_enable_at_startup = 1
+
