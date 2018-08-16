@@ -6,7 +6,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python']}
+Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
 Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -233,7 +233,8 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_filetype_whitelist = { 
     \ 'c': 1 ,
     \ 'cpp': 1,
-    \ 'python': 1
+    \ 'python': 1,
+    \ 'go': 1
     \}
 
 "jedi
@@ -258,10 +259,10 @@ set <m-/>=/
 set <m-j>=j
 set <m-k>=k
 set <m-.>=.
-let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsExpandTrigger = "<c-b>"
 let g:UltiSnipsListSnippets = "<m-.>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsEditSplit="vertical"
 "let g:snips_author = 'Strahinja Val Markovic'"
 
