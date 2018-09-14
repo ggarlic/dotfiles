@@ -1,6 +1,6 @@
 [general]
 accounts = gmail, work
-ui = Curses.Blinkenlights
+ui = ttyui
 # ui = Noninteractive.Quiet 
 #
 # 如果啟用此行，則不會輸出任何東西。最適宜cronjobs 在幕後運行了。
