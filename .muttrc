@@ -118,7 +118,7 @@ macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract 
 ## ignore everything not listed
 ignore *
 ## show user agent / mailer
-unignore        User-Agent: X-Agent: X-Mailer: X-Operating-System:
+unignore        User-Agent: X-Agent: X-Mailer: X-Operating-System: X-Newsreader: X-URL Organization
 ## show from,date,subject,to,cc,reply-to headers
 unignore        From: Date: Subject: To: Cc: BCC: Reply-to: Mail-Followup-To: X-PGP-Key-ID
 ## set the order of headers
