@@ -18,7 +18,6 @@ Plug 'garyburd/go-explorer'
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim'
-Plug 'chrisbra/vim-diff-enhanced'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 "Plug 'xolox/vim-misc'
@@ -79,6 +78,7 @@ set fileencoding=utf-8
 set shortmess=atI
 set dictionary+=/usr/share/dict/web2
 set ttimeoutlen=10
+set diffopt+=internal,algorithm:patience
 
 if has('mouse')
     set mouse=a
@@ -279,9 +279,6 @@ endif
 
 "rainbow
 let g:rainbow_active = 1
-
-"patience diff
-let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 
 "vim-go
 let g:go_fmt_command = "goimports"
