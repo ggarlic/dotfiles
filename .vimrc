@@ -13,7 +13,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'hdima/python-syntax'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'garyburd/go-explorer'
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -79,6 +79,7 @@ set shortmess=atI
 set dictionary+=/usr/share/dict/web2
 set ttimeoutlen=10
 set diffopt+=internal,algorithm:patience
+set autowrite  "auto save when :make
 
 if has('mouse')
     set mouse=a
@@ -282,10 +283,15 @@ let g:rainbow_active = 1
 
 "vim-go
 let g:go_fmt_command = "goimports"
+let g:go_gocode_propose_source=0
+let g:go_auto_type_info = 1
+let g:go_info_mode = 'guru'
+let g:go_addtags_transform = "camelcase"
+let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0
 
 au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
+"au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
@@ -296,6 +302,22 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>cr <Plug>(go-callers)
 au FileType go nmap <Leader>ce <Plug>(go-callees)
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
