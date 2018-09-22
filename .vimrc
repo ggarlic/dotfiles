@@ -269,7 +269,6 @@ let g:UltiSnipsListSnippets = "<m-.>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsEditSplit="vertical"
-"let g:snips_author = 'Strahinja Val Markovic'"
 
 "python.vim
 let python_highlight_all = 1
