@@ -14,7 +14,6 @@ Plug 'hdima/python-syntax'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'garyburd/go-explorer'
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim'
@@ -142,7 +141,7 @@ au FileType c,cpp setlocal omnifunc=ccomplete#Complete cindent foldmethod=syntax
     "au FileType python setlocal omnifunc=pythoncomplete#Complete
 "endif
 
-au FileType python setlocal foldmethod=indent
+au FileType python setlocal foldmethod=indent equalprg=yapf
 au FileType python inoremap ,, <ESC>A:<CR>
 au BufWritePre *.py :%s/\s\+$//e
 au FileType go setlocal foldmethod=indent
@@ -203,6 +202,11 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+"yapf for python
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+"isort for python
+autocmd FileType python nnoremap <leader>ii :!isort %<CR><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
