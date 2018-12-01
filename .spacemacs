@@ -233,6 +233,7 @@ It should only modify the values of Spacemacs settings."
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;;dotspacemacs-mode-line-theme '(doom)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -520,6 +521,7 @@ before packages are loaded."
   (add-hook 'c-mode-hook 'ycmd-mode)
   (add-hook 'c++-mode-hook 'ycmd-mode)
   (setq ycmd-force-semantic-completion t)
+  (setq go-format-before-save t)
 
   ;;https://github.com/syl20bnr/spacemacs/issues/7508
   ;;https://github.com/commercialhaskell/intero/issues/126#issuecomment-228612696
