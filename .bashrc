@@ -126,3 +126,10 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+#rupa/z.sh
+source $HOME/.mybashscripts/z.sh
+alias zz='z -c'
