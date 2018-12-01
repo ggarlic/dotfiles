@@ -223,7 +223,7 @@ let NERDShutUp=1
 
 "ycm
 "let g:ycm_add_preview_to_compleopt = 1
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
+"let g:ycm_python_binary_path = '/usr/local/bin/python3'
 "let g:ycm_python_binary_path = '/usr/local/opt/python@2/bin/python2'
 let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
@@ -243,7 +243,7 @@ let g:ycm_filetype_whitelist = {
     \}
 
 "jedi
-let g:jedi#force_py_version = 3
+"let g:jedi#force_py_version = 3
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 0
@@ -291,7 +291,7 @@ let g:go_gocode_propose_source=0
 let g:go_auto_type_info = 1
 let g:go_info_mode = 'guru'
 let g:go_addtags_transform = "camelcase"
-let g:go_auto_sameids = 1
+"let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0
 
 au FileType go nmap <leader>r <Plug>(go-run)
