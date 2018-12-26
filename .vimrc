@@ -7,7 +7,7 @@ Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
-Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'hdima/python-syntax'
@@ -38,8 +38,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 "Plug 'tweekmonster/startuptime.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'racer-rust/vim-racer'
-Plug 'rust-lang/rust.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Shougo/echodoc.vim'
@@ -243,7 +241,7 @@ let g:ycm_filetype_whitelist = {
     \}
 
 "jedi
-"let g:jedi#force_py_version = 3
+let g:jedi#force_py_version = 3
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 0
@@ -363,16 +361,6 @@ let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_selected_line_hl = 'op'
 
 
-"rust
-set hidden
-let g:rustfmt_autosave = 1
-let g:racer_cmd = "/Users/ggarlic/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -405,3 +393,5 @@ let g:Lf_NormalMap = {
 " echodoc
 let g:echodoc_enable_at_startup = 1
 
+" ale
+" let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', 'bin']
