@@ -63,10 +63,16 @@ This function should only modify configuration layer settings."
      html
      imenu-list
      ;;ivy
-     lua
+     ;;lua
      markdown
+     multiple-cursors
      neotree
-     org
+     (org :variables
+          org-enable-github-support t
+          org-enable-reveal-js-support t
+          org-enable-bootstrap-support t
+          org-enable-org-journal-support t)
+
      osx
      (python :variables
              python-backend 'anaconda
@@ -242,7 +248,9 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(;;"Fira Code"
-                                "Fantasque Sans Mono"
+                               ;;"Source Code Pro"
+                               "Sarasa Mono SC"
+                               ;;"Fantasque Sans Mono"
                                :size 15
                                :weight normal
                                :width normal)
@@ -483,7 +491,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         '((gruvbox
            (font-lock-string-face :slant italic)
            (font-lock-comment-face :slant italic))))
-)
+  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -502,7 +510,7 @@ before packages are loaded."
   (setq-default display-line-numbers-width-start t)
   (turn-on-fci-mode)
   (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-        "mht"  'ghc-show-type)
+    "mht"  'ghc-show-type)
   (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t
         geiser-repl-autodoc-p t
@@ -529,10 +537,10 @@ before packages are loaded."
   (with-eval-after-load 'intero
     (with-eval-after-load 'flycheck
       (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
-;;  (setq flycheck-scalastyle-jar
-;;   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
-;;  (setq flycheck-scalastylerc
-;;   "/usr/local/etc/scalastyle_config.xml")
+  ;;  (setq flycheck-scalastyle-jar
+  ;;   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
+  ;;  (setq flycheck-scalastylerc
+  ;;   "/usr/local/etc/scalastyle_config.xml")
   (setq neo-show-hidden-files nil)
   (setq neo-theme 'icons)
   )
