@@ -120,12 +120,14 @@ export PATH=$PATH:$GOPATH/bin
 #haskell
 export PATH=$HOME/.local/bin:$PATH
 eval "$(stack --bash-completion-script stack)"
+export PATH=$HOME/.cabal/bin:$PATH
 
 #gruvbox
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
+
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
