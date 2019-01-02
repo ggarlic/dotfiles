@@ -348,6 +348,12 @@ let g:EasyMotion_smartcase = 1
 "lua
 let g:lua_complete_omni = 1
 
+
+"startify
+let g:startify_bookmarks=[
+    \ '/path/to/my/projects',
+    \ ]
+
 "ctrlsf
 nmap     <Leader><C-F>f <Plug>CtrlSFPrompt
 vmap     <Leader><C-F>f <Plug>CtrlSFVwordPath
