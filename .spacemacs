@@ -64,6 +64,7 @@ This function should only modify configuration layer settings."
      imenu-list
      ;;ivy
      ;;lua
+     lsp
      markdown
      multiple-cursors
      neotree
@@ -75,13 +76,15 @@ This function should only modify configuration layer settings."
 
      osx
      (python :variables
-             python-backend 'anaconda
+             ;;python-backend 'anaconda
+             python-backend 'lsp
              python-enable-yapf-format-on-save t
              python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-column 99)
      ;;racket
-     rust
+     (rust :variables
+           rust-backend 'lsp)
      semantic
      scheme
      (shell :variables
@@ -94,7 +97,6 @@ This function should only modify configuration layer settings."
      ;;treemacs
      version-control
      yaml
-     ycmd
      )
 
    ;; List of additional packages that will be installed without being
@@ -525,10 +527,6 @@ before packages are loaded."
   (speedbar-add-supported-extension ".hs")
   (speedbar-add-supported-extension ".go")
   (mac-auto-operator-composition-mode)
-  (setq ycmd-server-command '("python" "/Users/ggarlic/.vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
-  (add-hook 'c-mode-hook 'ycmd-mode)
-  (add-hook 'c++-mode-hook 'ycmd-mode)
-  (setq ycmd-force-semantic-completion t)
   (setq go-format-before-save t)
 
   ;;https://github.com/syl20bnr/spacemacs/issues/7508
