@@ -114,6 +114,7 @@ export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work h
 #stty stop ^J
 stty stop undef
 
+#golang
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -128,7 +129,12 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
 
+#rust
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export CARGO_HOME="$HOME/.cargo"
 
+#fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
