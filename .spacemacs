@@ -50,7 +50,8 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      (go :variables
-         go-use-gometalinter t
+         go-backend 'lsp
+         go-use-golangci-lint t
          gofmt-command "goimports"
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
@@ -67,7 +68,7 @@ This function should only modify configuration layer settings."
      lsp
      markdown
      multiple-cursors
-     neotree
+     ;;neotree
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t
@@ -94,7 +95,7 @@ This function should only modify configuration layer settings."
      ocaml ;;must placed after syntax-checking
      themes-megapack
      theming
-     ;;treemacs
+     (treemacs :variables treemacs-use-follow-mode t)
      version-control
      yaml
      )
@@ -241,7 +242,6 @@ It should only modify the values of Spacemacs settings."
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
-   ;;dotspacemacs-mode-line-theme '(doom)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -535,10 +535,6 @@ before packages are loaded."
   (with-eval-after-load 'intero
     (with-eval-after-load 'flycheck
       (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
-  ;;  (setq flycheck-scalastyle-jar
-  ;;   "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
-  ;;  (setq flycheck-scalastylerc
-  ;;   "/usr/local/etc/scalastyle_config.xml")
   (setq neo-show-hidden-files nil)
   (setq neo-theme 'icons)
   )

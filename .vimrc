@@ -401,3 +401,6 @@ let g:echodoc_enable_at_startup = 1
 
 " ale
 " let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', 'bin']
+"https://github.com/w0rp/ale/issues/2339
+let g:ale_linters = { 'go': ['golangci-lint', "gotype"] }
+let g:ale_go_golangci_lint_options = '--fast'
