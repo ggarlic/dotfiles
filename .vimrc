@@ -105,6 +105,7 @@ set wildmenu
 set number
 set linebreak
 set cc=80
+set termguicolors
 "hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
@@ -286,7 +287,7 @@ let g:rainbow_active = 1
 let g:go_fmt_command = "goimports"
 let g:go_gocode_propose_source=0
 let g:go_auto_type_info = 1
-let g:go_info_mode = 'guru'
+"let g:go_info_mode = 'guru' --guru is already the default option
 let g:go_addtags_transform = "camelcase"
 "let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0

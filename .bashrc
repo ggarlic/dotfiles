@@ -124,7 +124,8 @@ eval "$(stack --bash-completion-script stack)"
 export PATH=$HOME/.cabal/bin:$PATH
 
 #gruvbox
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+# https://github.com/morhetz/gruvbox/wiki/Terminal-specific
+#source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/

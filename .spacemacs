@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -57,7 +57,6 @@ This function should only modify configuration layer settings."
          go-tab-width 4)
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell"
-              ;;haskell-completion-backend 'ghc-mod
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
      helm
@@ -68,7 +67,6 @@ This function should only modify configuration layer settings."
      lsp
      markdown
      multiple-cursors
-     ;;neotree
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t
@@ -511,8 +509,6 @@ before packages are loaded."
   ;;(setq powerline-default-separator 'slant)
   (setq-default display-line-numbers-width-start t)
   (turn-on-fci-mode)
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "mht"  'ghc-show-type)
   (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t
         geiser-repl-autodoc-p t
@@ -535,8 +531,6 @@ before packages are loaded."
   (with-eval-after-load 'intero
     (with-eval-after-load 'flycheck
       (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
-  (setq neo-show-hidden-files nil)
-  (setq neo-theme 'icons)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
