@@ -41,6 +41,8 @@ Plug 'dyng/ctrlsf.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Shougo/echodoc.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
@@ -106,6 +108,8 @@ set number
 set linebreak
 set cc=80
 set termguicolors
+set ballooneval
+set balloonevalterm
 "hi ColorColumn ctermbg=235 guibg=#2c2d27
 """""""""""""""""""""""""""""""""""""""
 " Search
@@ -289,6 +293,12 @@ let g:go_gocode_propose_source=0
 let g:go_auto_type_info = 1
 "let g:go_info_mode = 'guru' --guru is already the default option
 let g:go_addtags_transform = "camelcase"
+let g:go_def_mode='gopls'
+let g:go_metalinter_command='golangci-lint'
+if has('balloon_eval_term')
+  set balloonevalterm
+  set balloonexpr=go#tool#DescribeBalloon()
+endif
 "let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0
 
@@ -304,10 +314,11 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>cr <Plug>(go-callers)
 au FileType go nmap <Leader>ce <Plug>(go-callees)
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+au Filetype go nmap <silent> <leader>gd :GoDecls<CR>
 au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -318,8 +329,7 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -383,6 +393,7 @@ endif
 
 "leaderf function
 noremap <F2> :LeaderfFunction!<cr>
+let g:Lf_Ctags = "/usr/local/bin/ctags"
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_ShortcutF = '<C-P>'
