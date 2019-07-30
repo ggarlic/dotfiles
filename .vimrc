@@ -27,7 +27,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/a.vim'
 Plug 'kshenoy/vim-signature'
-Plug 'justinmk/vim-gtfo'
+"Plug 'justinmk/vim-gtfo'
 Plug 'lepture/vim-jinja'
 Plug 'cespare/vim-toml'
 Plug 'hynek/vim-python-pep8-indent'
@@ -43,6 +43,8 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Shougo/echodoc.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'solarnz/thrift.vim'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
@@ -289,9 +291,8 @@ let g:rainbow_active = 1
 
 "vim-go
 let g:go_fmt_command = "goimports"
-let g:go_gocode_propose_source=0
 let g:go_auto_type_info = 1
-"let g:go_info_mode = 'guru' --guru is already the default option
+let g:go_info_mode = 'gopls'
 let g:go_addtags_transform = "camelcase"
 let g:go_def_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
@@ -299,13 +300,16 @@ if has('balloon_eval_term')
   set balloonevalterm
   set balloonexpr=go#tool#DescribeBalloon()
 endif
+let g:go_doc_popup_window = 1
+let g:go_echo_progress = 1
+
 "let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0
 
 au FileType go nmap <leader>r <Plug>(go-run)
 "au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>K <Plug>(go-doc-vertical)
@@ -319,6 +323,7 @@ au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 au Filetype go nmap <silent> <leader>gd :GoDecls<CR>
+au Filetype go nmap <silent> <leader>gD :GoDeclsDir<CR>
 au BufRead,BufNewFile *.gohtml set filetype=gohtmltmpl
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -336,6 +341,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+" enable this to display which function i'm in now
+let g:airline#extensions#tagbar#enabled = 1
 
 "gruvbox
 set background=dark
@@ -414,5 +421,6 @@ let g:echodoc_enable_at_startup = 1
 " ale
 " let g:ale_virtualenv_dir_names = ['.env', '.venv', 'env', 've-py3', 've', 'virtualenv', 'venv', 'bin']
 "https://github.com/w0rp/ale/issues/2339
-let g:ale_linters = { 'go': ['golangci-lint', "gotype"] }
+let g:ale_linters = { 'go': ['golangci-lint'] }
 let g:ale_go_golangci_lint_options = '--fast'
+let g:ale_go_golangci_lint_package=1
