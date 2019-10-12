@@ -10,13 +10,13 @@ Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py -
 "Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'hdima/python-syntax'
+Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 "Plug 'xolox/vim-misc'
@@ -30,7 +30,7 @@ Plug 'kshenoy/vim-signature'
 "Plug 'justinmk/vim-gtfo'
 Plug 'lepture/vim-jinja'
 Plug 'cespare/vim-toml'
-Plug 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
@@ -45,6 +45,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'solarnz/thrift.vim'
 Plug 'majutsushi/tagbar'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'fisadev/vim-isort', {'for': 'python'}
 
 call plug#end()
 """"""""""""""""""""""""""""""""
