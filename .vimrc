@@ -148,7 +148,6 @@ au FileType c,cpp setlocal omnifunc=ccomplete#Complete cindent foldmethod=syntax
     "au FileType python setlocal omnifunc=pythoncomplete#Complete
 "endif
 
-au FileType python setlocal foldmethod=indent equalprg=yapf
 au FileType python inoremap ,, <ESC>A:<CR>
 au BufWritePre *.py :%s/\s\+$//e
 au FileType go setlocal foldmethod=indent
@@ -209,11 +208,6 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-"yapf for python
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
-"isort for python
-autocmd FileType python nnoremap <leader>ii :!isort %<CR><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -401,13 +395,18 @@ if !isdirectory(s:vim_tags)
 endif
 
 "leaderf function
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
 noremap <F2> :LeaderfFunction!<cr>
 let g:Lf_Ctags = "/usr/local/bin/ctags"
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ShowRelativePath = 0
 let g:Lf_ShortcutF = '<C-P>'
 let g:Lf_HideHelp = 1
-let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1, 'BufTag': 0}
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
 	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -416,6 +415,13 @@ let g:Lf_NormalMap = {
 	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
 
 " echodoc
 let g:echodoc_enable_at_startup = 1

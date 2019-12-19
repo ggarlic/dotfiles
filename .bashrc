@@ -114,15 +114,6 @@ export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work h
 #stty stop ^J
 stty stop undef
 
-#golang
-export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin
-
-#haskell
-export PATH=$HOME/.local/bin:$PATH
-eval "$(stack --bash-completion-script stack)"
-export PATH=$HOME/.cabal/bin:$PATH
-
 #gruvbox
 # https://github.com/morhetz/gruvbox/wiki/Terminal-specific
 #source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
@@ -130,10 +121,7 @@ export PATH=$HOME/.cabal/bin:$PATH
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
 
-#rust
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export CARGO_HOME="$HOME/.cargo"
+export LC_ALL="en_US.UTF-8"
 
 #fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -142,3 +130,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 #rupa/z.sh
 source $HOME/.mybashscripts/z.sh
 alias zz='z -c'
+
+#dict
+dict () {
+    curl dict://dict.org/d:"${1}"
+}
+
