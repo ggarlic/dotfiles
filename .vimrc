@@ -47,6 +47,7 @@ Plug 'solarnz/thrift.vim'
 Plug 'majutsushi/tagbar'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'fisadev/vim-isort', {'for': 'python'}
+Plug 'puremourning/vimspector'
 
 call plug#end()
 """"""""""""""""""""""""""""""""
