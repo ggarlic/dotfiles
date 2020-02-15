@@ -511,6 +511,11 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         '((gruvbox
            (font-lock-string-face :slant italic)
            (font-lock-comment-face :slant italic))))
+
+  (setq configuration-layer-elpa-archives
+   '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 )
 
 (defun dotspacemacs/user-load ()
