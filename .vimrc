@@ -1,4 +1,3 @@
-"let g:python_host_prog='/usr/bin/python2.7'
 call plug#begin('~/.vim/plugged')
 "github
 Plug 'bling/vim-airline'
@@ -10,7 +9,7 @@ Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py -
 "Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'hdima/python-syntax', {'for': 'python'}
+Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
@@ -19,9 +18,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-lua-ftplugin'
-"Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -30,7 +26,7 @@ Plug 'kshenoy/vim-signature'
 "Plug 'justinmk/vim-gtfo'
 Plug 'lepture/vim-jinja'
 Plug 'cespare/vim-toml'
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
@@ -226,7 +222,6 @@ let NERDShutUp=1
 "ycm
 "let g:ycm_add_preview_to_compleopt = 1
 "let g:ycm_python_binary_path = '/usr/local/bin/python3'
-"let g:ycm_python_binary_path = '/usr/local/opt/python@2/bin/python2'
 let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
@@ -273,8 +268,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsEditSplit="vertical"
 
 "python.vim
-let python_highlight_all = 1
-"let python_version_2 = 0
+let g:python_highlight_all = 1
 
 "indentLine
 if has("gui_running")
