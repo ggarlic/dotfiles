@@ -86,7 +86,10 @@ This function should only modify configuration layer settings."
              python-fill-column 99)
      ;;racket
      (rust :variables
-           rust-backend 'lsp)
+           rust-backend 'lsp
+           rust-format-on-save t
+           )
+
      semantic
      scheme
      (shell :variables
