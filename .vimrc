@@ -15,7 +15,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'mbbill/undotree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
@@ -238,21 +237,6 @@ let g:ycm_filetype_whitelist = {
     \ 'python': 1,
     \ 'go': 1
     \}
-
-"jedi
-let g:jedi#force_py_version = 3
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#completions_enabled = 0
-"let g:jedi#completions_command = ""
-let g:jedi#show_call_signatures = "2"
-
-let g:jedi#goto_assignments_command = "<leader>pa"
-let g:jedi#goto_definitions_command = "<leader>pd"
-let g:jedi#usages_command = "<leader>pu"
-let g:jedi#rename_command = "<leader>pr"
 
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
