@@ -224,11 +224,11 @@ let NERDShutUp=1
 let g:ycm_key_invoke_completion = '<C-.>'
 "let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>ji :YcmCompleter GoToImplementation<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 "let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_goto_buffer_command='vertical-split'
-"let g:ycm_global_ycm_extra_conf = '/Users/ggarlic/.vim/default_cpp.conf'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_filetype_whitelist = { 
@@ -237,6 +237,8 @@ let g:ycm_filetype_whitelist = {
     \ 'python': 1,
     \ 'go': 1
     \}
+let g:ycm_disable_signature_help = 1
+let g:ycm_gopls_binary_path = 'gopls'
 
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
@@ -255,11 +257,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:python_highlight_all = 1
 
 "indentLine
-if has("gui_running")
-let g:indentLine_char = '|'
-else
-let g:indentLine_char = '¦'
-endif
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 "rainbow
 let g:rainbow_active = 1
