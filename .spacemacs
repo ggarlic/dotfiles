@@ -46,7 +46,6 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-enable-clang-support t
             c-c++-default-mode-for-headers 'c++-mode)
-     coq
      dap
      emacs-lisp
      git
@@ -89,14 +88,12 @@ This function should only modify configuration layer settings."
            rust-backend 'lsp
            rust-format-on-save t
            )
-
      semantic
      scheme
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      syntax-checking
-     ocaml ;;must placed after syntax-checking
      parinfer
      themes-megapack
      theming
@@ -121,7 +118,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(flycheck-ocaml)
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -252,8 +249,9 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
-
+   ;; dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
+   ;; dotspacemacs-mode-line-theme '(all-the-icons :separator slant :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
