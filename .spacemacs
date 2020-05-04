@@ -63,7 +63,7 @@ This function should only modify configuration layer settings."
      helm
      html
      imenu-list
-     ;;ivy
+     ivy
      ;;lua
      lsp
      markdown
@@ -86,8 +86,8 @@ This function should only modify configuration layer settings."
      ;;racket
      (rust :variables
            rust-backend 'lsp
-           rust-format-on-save t
-           )
+           rust-format-on-save t)
+
      semantic
      scheme
      (shell :variables
@@ -99,8 +99,8 @@ This function should only modify configuration layer settings."
      theming
      (treemacs :variables
         treemacs-use-follow-mode t
-        treemacs-use-git-mode 'deferred
-     )
+        treemacs-use-git-mode 'deferred)
+
      version-control
      yaml
      )
@@ -112,7 +112,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ivy-posframe)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -586,6 +586,16 @@ before packages are loaded."
   (with-eval-after-load 'magit
     (define-key magit-status-mode-map
       (kbd dotspacemacs-leader-key) spacemacs-default-map))
+
+  ;; ivy-posframe
+  (require 'ivy-posframe)
+  (setq ivy-posframe-parameters
+        '((left-fringe . 8)
+          (right-fringe . 8)))
+
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  (ivy-posframe-mode 1)
+
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
