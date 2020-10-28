@@ -268,7 +268,9 @@ let g:go_auto_type_info = 1
 let g:go_info_mode = 'gopls'
 let g:go_addtags_transform = "camelcase"
 let g:go_def_mode='gopls'
+let g:go_fill_struct_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
+let g:go_referrers_mode = 'gopls'
 if has('balloon_eval_term')
   set balloonevalterm
   set balloonexpr=go#tool#DescribeBalloon()
@@ -321,7 +323,6 @@ let g:airline#extensions#tagbar#enabled = 1
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
-let g:gruvbox_contrast_dark="dark"
 
 "vim-gtfo
 let g:gtfo#terminals = {'unix': 'termite -d', 'mac': 'iterm'}
@@ -385,13 +386,13 @@ let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1, 'BufTag': 0}
 let g:Lf_NormalMap = {
-	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-	\ }
+    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+    \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+    \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+    \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+    \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+    \ }
 noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
 noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
