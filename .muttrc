@@ -17,7 +17,6 @@ set header_cache="~/.mail/cache/header"
 set mask="!^\\.[^.]"
 unset record
 folder-hook gmail set from=yangbo.ggarlic@gmail.com
-folder-hook work  set from=yangbo@admaster.com.cn
 
 set sendmail="/usr/bin/msmtp"
 set envelope_from=yes
@@ -25,7 +24,6 @@ set use_from=yes
 set realname="yangbo"
 set from=yangbo.ggarlic@gmail.com
 macro generic "<esc>1" ":set from=yangbo.ggarlic@gmail.com realname=ggarlic"
-macro generic "<esc>2" ":set from=yangbo@admaster.com.cn realname='Yangbo 杨博'"
 set include=yes 
 set indent_str="> "
 set signature = ~/.mail/mutt_signature
@@ -95,7 +93,7 @@ set mailcap_path=~/.mail/mailcap
 auto_view  text/html application/pdf application/msword text/enriched text/rtf
 
 # traditional Fwd: subject
-set forw_format="Fwd: %s"
+set forward_format="Fwd: %s"
 
 #show tildes at the end fo mail
 set tilde=yes

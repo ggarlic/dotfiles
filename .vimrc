@@ -4,17 +4,17 @@ Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
 "Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'mbbill/undotree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'mattn/emmet-vim'
@@ -32,30 +32,37 @@ Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 "Plug 'tweekmonster/startuptime.vim'
-Plug 'dyng/ctrlsf.vim'
 "Plug 'ludovicchabant/vim-gutentags'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderInstallCExtension' }
 Plug 'Shougo/echodoc.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'solarnz/thrift.vim'
 Plug 'majutsushi/tagbar'
+
+" python
+Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'fisadev/vim-isort', {'for': 'python'}
-Plug 'puremourning/vimspector'
 
+" always the last one
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 """"""""""""""""""""""""""""""""
 "General
 """"""""""""""""""""""""""""""""
 set clipboard^=unnamed,unnamedplus
 set backspace=indent,eol,start
-set nofoldenable
+set foldenable
+set fdm=indent
 set foldlevel=99
 "set foldnestmax=10
 set nobackup
+set nowritebackup
+set updatetime=300
 set completeopt=longest,menu
 set display=lastline
+set lazyredraw
 set nocompatible
 set autochdir
 set tags=./.tags;,.tags
@@ -70,11 +77,13 @@ set showtabline=2
 set noshowmode
 set sps=best,10
 set backspace=2
+set nowrap
 set whichwrap+=<,>,h,l
 set report=0
 set encoding=utf-8
 set fileencoding=utf-8
 set shortmess=atI
+set shortmess+=c
 set dictionary+=/usr/share/dict/web2
 set ttimeoutlen=10
 set diffopt+=internal,algorithm:patience
@@ -91,11 +100,8 @@ endif
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
-"syntax enable --no need for vim-plug
-if has("gui_macvim")
-    set macligatures
-endif
-set guifont="DejaVu Sans Mono"\ \ 10
+syntax enable 
+syntax on 
 set scrolloff=3
 set go-=m
 set go-=T
@@ -131,20 +137,15 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
-set formatoptions+=mM
+set formatoptions+=mB
+set ffs=unix,dos,mac
+filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType c,cpp inoremap ,, <ESC>A;<CR>
 au FileType c,cpp setlocal omnifunc=ccomplete#Complete cindent foldmethod=syntax tags+=/home/ggarlic/.vim/systags;
-
-"if has('python3')
-    "au FileType python setlocal omnifunc=python3complete#Complete
-"else
-    "au FileType python setlocal omnifunc=pythoncomplete#Complete
-"endif
-
-au FileType python inoremap ,, <ESC>A:<CR>
+au FileType c,cpp setlocal commentstring=//\ %s
+au FileType markdown setlocal wrap
 au BufWritePre *.py :%s/\s\+$//e
 au FileType go setlocal foldmethod=indent
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -210,7 +211,11 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 """"""""""""""""""""""""""""""""""""""""""""""
 "nerdtree
 map <F4> :NERDTreeToggle<CR>
-let NERDTreeChDirMode=2
+"let NERDTreeChDirMode=2
+let g:NERDTreeShowlineNumber=1
+let NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeHijackNetrw = 0
 "https://github.com/scrooloose/nerdtree/issues/21
 let NERDTreeIgnore = ['\.pyc$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -261,6 +266,11 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 "rainbow
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'separately': {
+\		'nerdtree': 0,
+\	}
+\}
 
 "vim-go
 let g:go_fmt_command = "goimports"
@@ -346,19 +356,6 @@ let g:startify_bookmarks=[
     \ '/path/to/my/projects',
     \ ]
 
-"ctrlsf
-nmap     <Leader><C-F>f <Plug>CtrlSFPrompt
-vmap     <Leader><C-F>f <Plug>CtrlSFVwordPath
-vmap     <Leader><C-F>F <Plug>CtrlSFVwordExec
-nmap     <Leader><C-F>n <Plug>CtrlSFCwordPath
-nmap     <Leader><C-F>p <Plug>CtrlSFPwordPath
-nnoremap <Leader><C-F>o :CtrlSFOpen<CR>
-nnoremap <Leader><C-F>t :CtrlSFToggle<CR>
-inoremap <Leader><C-F>t <Esc>:CtrlSFToggle<CR>
-let g:ctrlsf_default_root = 'project'
-let g:ctrlsf_selected_line_hl = 'op'
-
-
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -379,12 +376,20 @@ noremap <F2> :LeaderfFunction!<cr>
 let g:Lf_Ctags = "/usr/local/bin/ctags"
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ShowRelativePath = 0
-let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_ShortcutF = '<c-p>'
+let g:Lf_ShortcutB = '<m-n>'
 let g:Lf_HideHelp = 1
-let g:Lf_UseCache = 0
+let g:Lf_UseCache = 1
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
+    let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1, 'BufTag': 0}
+let g:Lf_WildIgnore = {
+					\ 'dir': ['.svn','.git','.hg'],
+					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+					\ }
 let g:Lf_NormalMap = {
     \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
     \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -397,6 +402,7 @@ noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
 noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 " search visually selected text literally
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
@@ -410,3 +416,14 @@ let g:echodoc_enable_at_startup = 1
 let g:ale_linters = { 'go': ['golangci-lint'] }
 let g:ale_go_golangci_lint_options = '--fast'
 let g:ale_go_golangci_lint_package=1
+
+" vim-nerdtree-syntax-highlight
+"let g:NERDTreeLimitedSyntax = 1
+"let g:NERDTreeFileExtensionHighlightFullName = 1
+"let g:NERDTreeExactMatchHighlightFullName = 1
+"let g:NERDTreePatternMatchHighlightFullName = 1
+"let g:NERDTreeHighlightFolders = 1
+"let g:NERDTreeHighlightFoldersFullName = 1
+
+"vim-devicons
+let g:webdevicons_conceal_nerdtree_brackets=1

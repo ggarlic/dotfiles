@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
          gofmt-command "goimports"
          godoc-at-point-function 'godoc-gogetdoc
          go-use-testify-for-testing t
+         go-format-before-save t
          go-tab-width 4)
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell"
@@ -102,8 +103,8 @@ This function should only modify configuration layer settings."
         treemacs-use-git-mode 'deferred
      )
      version-control
-     yaml
-     )
+     yaml)
+
 
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
