@@ -51,7 +51,7 @@ This function should only modify configuration layer settings."
      git
      (go :variables
          go-backend 'lsp
-         go-use-golangci-lint 't
+         go-use-golangci-lint t
          gofmt-command "goimports"
          godoc-at-point-function 'godoc-gogetdoc
          go-use-testify-for-testing t
@@ -65,7 +65,6 @@ This function should only modify configuration layer settings."
      html
      imenu-list
      ivy
-     ;;lua
      lsp
      markdown
      multiple-cursors
@@ -99,8 +98,9 @@ This function should only modify configuration layer settings."
      themes-megapack
      theming
      (treemacs :variables
-        treemacs-use-follow-mode t
+        treemacs-use-follow-mode 'tag
         treemacs-use-git-mode 'deferred
+        treemacs-lock-width t
      )
      version-control
      yaml)
@@ -230,9 +230,13 @@ It should only modify the values of Spacemacs settings."
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
-   ;; `recents' `bookmarks' `projects' `agenda' `todos'.
+   ;; `recents' `recents-by-project' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
+   ;; The exceptional case is `recents-by-project', where list-type must be a
+   ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
+   ;; number is the project limit and the second the limit on the recent files
+   ;; within a project.
    dotspacemacs-startup-lists '((recents . 5)
                                 (projects . 7))
 
@@ -246,6 +250,14 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
+
+   ;; If non-nil, *scratch* buffer will be persistent. Things you write down in
+   ;; *scratch* buffer will be saved and restored automatically.
+   dotspacemacs-scratch-buffer-persistent nil
+
+   ;; If non-nil, `kill-buffer' on *scratch* buffer
+   ;; will bury it instead of killing.
+   dotspacemacs-scratch-buffer-unkillable nil
 
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
@@ -273,7 +285,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font or prioritized list of fonts.
+   ;; Default font or prioritized list of fonts. The `:size' can be specified as
+   ;; a non-negative integer (pixel size), or a floating-point (point size).
+   ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Fira Code"
                                ;;"Source Code Pro"
                                ;;"Fantasque Sans Mono"
@@ -494,6 +508,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
+   ;; Show trailing whitespace (default t)
+   dotspacemacs-show-trailing-whitespace t
+
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
@@ -570,7 +587,6 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;;(setq powerline-default-separator 'slant)
   (setq-default display-line-numbers-width-start t)
-  (turn-on-fci-mode)
   (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t
         geiser-repl-autodoc-p t

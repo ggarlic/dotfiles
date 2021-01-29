@@ -12,7 +12,7 @@ Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py -
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
@@ -282,8 +282,8 @@ let g:go_fill_struct_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
 let g:go_referrers_mode = 'gopls'
 if has('balloon_eval_term')
-  set balloonevalterm
-  set balloonexpr=go#tool#DescribeBalloon()
+  au FileType go setlocal balloonevalterm
+  au FileType go setlocal balloonexpr=go#tool#DescribeBalloon()
 endif
 let g:go_doc_popup_window = 1
 let g:go_echo_progress = 1
