@@ -33,7 +33,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 "Plug 'tweekmonster/startuptime.vim'
 "Plug 'ludovicchabant/vim-gutentags'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderInstallCExtension' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'Shougo/echodoc.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -384,7 +384,7 @@ let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
-    let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
+let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1, 'BufTag': 0}
 let g:Lf_WildIgnore = {
 					\ 'dir': ['.svn','.git','.hg'],

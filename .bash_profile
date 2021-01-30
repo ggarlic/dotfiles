@@ -11,10 +11,6 @@ export PERL_LOCAL_LIB_ROOT="$HOME/.perl5"
 export PERL_MB_OPT="--install_base \"$HOME/.perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/.perl5"
 
-#homebrew python2
-export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
-export PATH="/usr/local/opt/python@2/bin:$PATH"
-
 #rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -35,4 +31,3 @@ export PATH=$HOME/.cabal/bin:$PATH
 #golang
 export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin
-

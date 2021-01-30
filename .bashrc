@@ -53,6 +53,7 @@ export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
@@ -60,13 +61,15 @@ export GIT_PS1_SHOWUPSTREAM="auto verbose"
 export GIT_PS1_SHOWCOLORHINTS=true
 
 PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥 \[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+
+# Change the window title of X terminals
+case ${TERM} in
+	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+		;;
+	screen*)
+		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+		;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -121,10 +124,13 @@ stty stop undef
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
 
-export LC_ALL="en_US.UTF-8"
+if [ "$TERM"="linux" ] ;then
+  export LANG="en_US.UTF-8"
+fi
 
 #fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 #rupa/z.sh
@@ -136,3 +142,4 @@ dict () {
     curl dict://dict.org/d:"${1}"
 }
 
+complete -cf sudo
