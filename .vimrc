@@ -244,6 +244,13 @@ let g:ycm_filetype_whitelist = {
     \}
 let g:ycm_disable_signature_help = 1
 let g:ycm_gopls_binary_path = 'gopls'
+let g:ycm_language_server =
+  \ [{
+  \   'name': 'ccls',
+  \   'cmdline': [ 'ccls' ],
+  \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
+  \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
+  \ }]
 
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
@@ -287,6 +294,7 @@ if has('balloon_eval_term')
 endif
 let g:go_doc_popup_window = 1
 let g:go_echo_progress = 1
+let g:go_guru_scope = ["..."]
 
 "let g:go_auto_sameids = 1
 "let g:go_fmt_autosave = 0
