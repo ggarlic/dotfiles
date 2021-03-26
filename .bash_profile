@@ -15,10 +15,6 @@ export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOPATH/bin
 source <(golangci-lint completion bash)
 
-export GOPROXY=http://goproxy.intra.xiaojukeji.com,direct
-export GOSUMDB=off
-export GO111MODULE=auto
-
 # rpc-tools
 export PATH=/Users/ggarlic/.rpc-tools:$PATH
 
