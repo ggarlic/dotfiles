@@ -44,7 +44,14 @@ This function should only modify configuration layer settings."
      better-defaults
      colors
      (c-c++ :variables
-            c-c++-enable-clang-support t
+            c-c++-backend 'lsp-ccls
+            c-c++-lsp-enable-semantic-highlight 'rainbow
+            c-c++-dap-adapters '(dap-lldb dap-cpptools)
+            c++-enable-organize-includes-on-save t
+            c-c++-enable-google-style t
+            c-c++-enable-google-newline t
+            c-c++-adopt-subprojects t
+            c-c++-enable-clang-format-on-save t
             c-c++-default-mode-for-headers 'c++-mode)
      dap
      emacs-lisp
@@ -58,8 +65,7 @@ This function should only modify configuration layer settings."
          go-format-before-save t
          go-tab-width 4)
      (haskell :variables
-              haskell-enable-hindent-style "johan-tibell"
-              haskell-completion-backend 'intero
+              haskell-completion-backend 'lsp
               haskell-enable-hindent t)
      helm
      html
@@ -100,6 +106,7 @@ This function should only modify configuration layer settings."
      (treemacs :variables
         treemacs-use-follow-mode 'tag
         treemacs-use-git-mode 'deferred
+        treemacs-use-all-the-icons-theme t
         treemacs-lock-width t
      )
      version-control
@@ -114,7 +121,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(ivy-posframe)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -543,7 +550,10 @@ It should only modify the values of Spacemacs settings."
 
    ;; If nil the home buffer shows the full path of agenda items
    ;; and todos. If non nil only the file name is shown.
-   dotspacemacs-home-shorten-agenda-source nil))
+   dotspacemacs-home-shorten-agenda-source nil
+
+   ;; If non-nil then byte-compile some of Spacemacs files.
+   dotspacemacs-byte-compile nil))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -603,12 +613,6 @@ before packages are loaded."
   (mac-auto-operator-composition-mode)
   (setq go-format-before-save t)
 
-  ;;https://github.com/syl20bnr/spacemacs/issues/7508
-  ;;https://github.com/commercialhaskell/intero/issues/126#issuecomment-228612696
-  ;; intero removes hlint by default, let get it back
-  (with-eval-after-load 'intero
-    (with-eval-after-load 'flycheck
-      (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
   (with-eval-after-load 'org
       (setq org-directory "~/Documents/org")
       (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -640,13 +644,13 @@ before packages are loaded."
       (kbd dotspacemacs-leader-key) spacemacs-default-map))
 
   ;; ivy-posframe
-  (require 'ivy-posframe)
-  (setq ivy-posframe-parameters
-        '((left-fringe . 8)
-          (right-fringe . 8)))
+  ;;(require 'ivy-posframe)
+  ;;(setq ivy-posframe-parameters
+  ;;     '((left-fringe . 8)
+  ;;        (right-fringe . 8)))
 
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-  (ivy-posframe-mode 1)
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  ;; (ivy-posframe-mode 1)
 
 )
 (custom-set-variables
