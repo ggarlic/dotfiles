@@ -24,21 +24,26 @@ shopt -s checkwinsize
 
 shopt -s extglob
 
+#stty stop ^J
+stty stop undef
+
 export EDITOR="vim"
+export LC_ALL="en_US.UTF-8"
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
 case "$TERM" in
     xterm*|rxvt*)
         TERM=xterm-256color
         ;;
 esac
+
 if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
 fi
-[ -z "$TMUX" ] && export TERM=xterm-256color
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# color for man pages
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
 export LESS_TERMCAP_md=$'\E[01;31m' # begin bold
 export LESS_TERMCAP_me=$'\E[0m' # end mode
@@ -54,11 +59,28 @@ export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWSTASHSTATE=true
-export GIT_PS1_SHOWUPSTREAM="auto verbose"
-export GIT_PS1_SHOWCOLORHINTS=true
+
+if [[ "$OSTYPE" == "linux"* ]]; then
+    # TODO git-prompt and ps1
+    source /Users/ggarlic/.git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWSTASHSTATE=true
+    export GIT_PS1_SHOWUPSTREAM="auto verbose"
+    export GIT_PS1_SHOWCOLORHINTS=true
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # bash completion
+    if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+        export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+        . "/usr/local/etc/profile.d/bash_completion.sh"
+    fi
+
+    # cli color
+    export CLICOLOR=1
+    export LSCOLORS=ExFxCxDxBxegedabagacad
+fi
+
+
 
 PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥 \[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 
@@ -72,16 +94,17 @@ case ${TERM} in
 		;;
 esac
 
+#mail
+export MAILCHECK=60
+export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
+
 # enable color support of ls and also add handy aliases
+# in fact, this not working for bsd ls, only for gnu ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -89,57 +112,33 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# grep with color
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 alias m='neomutt'
 
-#mkdir,cd into it
+#gruvbox
+# https://github.com/morhetz/gruvbox/wiki/Terminal-specific
+# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+#notes
+#http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
+
+
+#### handy functions ####
+
+# mkdir,cd into it
 mkcd(){
 	mkdir -p "$*"
 	cd "$*"
 }
 
-#mail
-export MAILCHECK=60
-export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
-
-#stty stop ^J
-stty stop undef
-
-#gruvbox
-# https://github.com/morhetz/gruvbox/wiki/Terminal-specific
-#source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
-#notes
-#http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
-
-if [ "$TERM"="linux" ] ;then
-  export LANG="en_US.UTF-8"
-fi
-
-#fzf
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-
-#rupa/z.sh
-source $HOME/.mybashscripts/z.sh
-alias zz='z -c'
-
-#dict
+# dict
 dict () {
     curl dict://dict.org/d:"${1}"
 }
-
-complete -cf sudo
