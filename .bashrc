@@ -9,6 +9,8 @@
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+#. /etc/profile.d/vte.sh
+
 # append to the history file, don't overwrite it
 # better history with multi session
 shopt -s histappend
@@ -32,12 +34,6 @@ export LC_ALL="en_US.UTF-8"
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-case "$TERM" in
-    xterm*|rxvt*)
-        TERM=xterm-256color
-        ;;
-esac
-
 if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
   __vte_osc7
@@ -58,16 +54,14 @@ export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-
 if [[ "$OSTYPE" == "linux"* ]]; then
-    # TODO git-prompt and ps1
-    source /Users/ggarlic/.git-prompt.sh
+    source /usr/share/git/completion/git-prompt.sh
     export GIT_PS1_SHOWDIRTYSTATE=true
     export GIT_PS1_SHOWUNTRACKEDFILES=true
     export GIT_PS1_SHOWSTASHSTATE=true
     export GIT_PS1_SHOWUPSTREAM="auto verbose"
     export GIT_PS1_SHOWCOLORHINTS=true
+    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥\[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # bash completion
     if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
@@ -78,11 +72,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # cli color
     export CLICOLOR=1
     export LSCOLORS=ExFxCxDxBxegedabagacad
+    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥\[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 fi
-
-
-
-PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥 \[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -99,7 +90,7 @@ export MAILCHECK=60
 export MAILPATH=~/.mail/gmail/inbox?"Gmail has mail!":~/.mail/work/inbox?"Work has mail!"
 
 # enable color support of ls and also add handy aliases
-# in fact, this not working for bsd ls, only for gnu ls
+# in fact, this is not working for bsd ls, only for gnu ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -122,13 +113,12 @@ alias egrep='egrep --color=auto'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias m='neomutt'
 
-#gruvbox
+# gruvbox
 # https://github.com/morhetz/gruvbox/wiki/Terminal-specific
 # source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 #notes
 #http://www.eddieantonio.ca/blog/2015/04/16/iterm-italics/
-
 
 #### handy functions ####
 

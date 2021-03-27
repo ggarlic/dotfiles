@@ -2,24 +2,28 @@ if [ -f ~/.bashrc ]; then
     . $HOME/.bashrc
 fi
 
-export PATH=$PATH:/usr/local/sbin
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
 
 # rust
-source "$HOME/.cargo/env"
+[ -f ~/.cargo/env ] && . "$HOME/.cargo/env"
 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 export CARGO_HOME="$HOME/.cargo"
 
 # golang
 export GOPATH=$HOME/dev/go
-export PATH=$PATH:$GOPATH/bin
+append_path $GOPATH/bin
 source <(golangci-lint completion bash)
 
-# rpc-tools
-export PATH=/Users/ggarlic/.rpc-tools:$PATH
-
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # rupa/z.sh
@@ -27,22 +31,27 @@ source $HOME/.mybashscripts/z.sh
 alias zz='z -c'
 
 # haskell
-. "$HOME/.ghcup/env"
-export PATH=$HOME/.local/bin:$PATH
-eval "$(stack --bash-completion-script stack)"
-export PATH=$HOME/.cabal/bin:$PATH
+append_path $HOME/.local/bin
+append_path $HOME/.cabal/bin
+[ -f ~/.ghcup/env ] && . "$HOME/.ghcup/env" && eval "$(stack --bash-completion-script stack)"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+
+    export PATH=$PATH:/usr/local/sbin
+
     # homebrew bottles
     export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
     # homebrew racket
-    export PATH=$PATH:/Applications/Racket\ v8.0/bin
+    append_path '/Applications/Racket\ v8.0/bin'
 
     # perl for mac
-    export PATH="$HOME/.perl5/bin:$PATH"
+    append_path $HOME/.perl5/bin
     export PERL5LIB="$HOME/.perl5/lib/perl5"
     export PERL_LOCAL_LIB_ROOT="$HOME/.perl5"
     export PERL_MB_OPT="--install_base \"$HOME/.perl5\""
     export PERL_MM_OPT="INSTALL_BASE=$HOME/.perl5"
+
+    # rpc-tools
+    append_path $HOME/.rpc-tools
 fi
