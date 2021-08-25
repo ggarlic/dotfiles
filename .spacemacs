@@ -89,13 +89,15 @@ This function should only modify configuration layer settings."
              python-test-runner 'pytest
              python-sort-imports-on-save t
              python-fill-column 99)
-     ;;racket
+     racket
      (rust :variables
            rust-backend 'lsp
            rust-format-on-save t
+           lsp-rust-server 'rust-analyzer
+           cargo-process-reload-on-modify t
            )
      semantic
-     scheme
+     ;;scheme
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -577,9 +579,16 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
            (font-lock-comment-face :slant italic))))
 
   (setq configuration-layer-elpa-archives
-   '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+   '(
+       ;;   ("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+       ;;   ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+       ;;   ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+       ("melpa-cn". "http://mirrors.ustc.edu.cn/elpa/melpa/")
+       ("org-cn". "http://mirrors.ustc.edu.cn/elpa/org/")
+       ("gnu-cn". "http://mirrors.ustc.edu.cn/elpa/gnu/")
+       ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+    )
+  )
 )
 
 (defun dotspacemacs/user-load ()
