@@ -23,9 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/a.vim'
 Plug 'kshenoy/vim-signature'
 "Plug 'justinmk/vim-gtfo'
-Plug 'lepture/vim-jinja'
 Plug 'cespare/vim-toml'
-Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
@@ -44,6 +42,8 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'fisadev/vim-isort', {'for': 'python'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
+Plug 'lepture/vim-jinja'
 
 " always the last one
 Plug 'ryanoasis/vim-devicons'
