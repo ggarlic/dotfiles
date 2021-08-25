@@ -72,7 +72,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # cli color
     export CLICOLOR=1
     export LSCOLORS=ExFxCxDxBxegedabagacad
-    PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥\[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
+    PS1="\$([[ \$? != 0 ]] && echo \"💥 \")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\")\[\033[1;33m\]\$(git-radar --bash --fetch)\n\[\033[1;33m\]>>>\[\033[0m\]"
 fi
 
 # Change the window title of X terminals
