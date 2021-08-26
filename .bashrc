@@ -32,13 +32,6 @@ stty stop undef
 export EDITOR="vim"
 export LC_ALL="en_US.UTF-8"
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
-
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
-
 # color for man pages
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
 export LESS_TERMCAP_md=$'\E[01;31m' # begin bold
