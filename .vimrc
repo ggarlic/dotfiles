@@ -76,8 +76,8 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 set sps=best,10
-set backspace=2
-set nowrap
+"set backspace=2
+"set nowrap
 set whichwrap+=<,>,h,l
 set report=0
 set encoding=utf-8
@@ -283,7 +283,7 @@ let g:rainbow_conf = {
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
 let g:go_info_mode = 'gopls'
-let g:go_addtags_transform = "camelcase"
+let g:go_addtags_transform = "snakecase"
 let g:go_def_mode='gopls'
 let g:go_fill_struct_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
