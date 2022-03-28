@@ -13,14 +13,15 @@ append_path () {
 
 # rust
 [ -f ~/.cargo/env ] && . "$HOME/.cargo/env"
-export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+# export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 export CARGO_HOME="$HOME/.cargo"
 
 # golang
 export GOPATH=$HOME/dev/go
 append_path $GOPATH/bin
-source <(golangci-lint completion bash)
+#source <(golangci-lint completion bash) # it's slow for bash initializing
 
 # fzf
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
@@ -44,7 +45,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles 
 
     # homebrew racket
-    append_path "/Applications/Racket v8.2/bin"
+    append_path "/Applications/Racket v8.4/bin"
 
     # perl for mac
     append_path $HOME/.perl5/bin
