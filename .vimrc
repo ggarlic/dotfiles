@@ -251,6 +251,7 @@ let g:ycm_language_server =
   \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
   \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
   \ }]
+let g:ycm_auto_trigger = 1
 
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache

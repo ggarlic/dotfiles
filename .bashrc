@@ -9,8 +9,6 @@
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-#. /etc/profile.d/vte.sh
-
 # append to the history file, don't overwrite it
 # better history with multi session
 shopt -s histappend

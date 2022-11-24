@@ -45,7 +45,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles 
 
     # homebrew racket
-    append_path "/Applications/Racket v8.4/bin"
+    append_path "/Applications/Racket v8.7/bin"
 
     # perl for mac
     append_path $HOME/.perl5/bin
