@@ -103,6 +103,9 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      syntax-checking
      parinfer
+     (ranger :variables
+        ranger-show-preview t
+     )
      themes-megapack
      theming
      (treemacs :variables
