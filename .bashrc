@@ -52,6 +52,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     export GIT_PS1_SHOWSTASHSTATE=true
     export GIT_PS1_SHOWUPSTREAM="auto verbose"
     export GIT_PS1_SHOWCOLORHINTS=true
+    export GIT_PS1_SHOWCONFLICTSTATE=true
     PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥\[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # bash completion
