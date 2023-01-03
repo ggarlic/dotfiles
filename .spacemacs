@@ -666,8 +666,8 @@ before packages are loaded."
   (require 'speedbar)
   (speedbar-add-supported-extension ".hs")
   (speedbar-add-supported-extension ".go")
-  (mac-auto-operator-composition-mode)
-  (setq go-format-before-save t)
+  (if (eq system-type 'darwin)
+      (mac-auto-operator-composition-mode))
 
   (with-eval-after-load 'org
       (setq org-directory "~/Documents/org")
