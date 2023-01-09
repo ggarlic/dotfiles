@@ -64,16 +64,15 @@ This function should only modify configuration layer settings."
          go-use-testify-for-testing t
          go-format-before-save t
          go-tab-width 4)
-     (haskell :variables
-              haskell-completion-backend 'lsp
-              haskell-enable-hindent t)
-     helm
-     html
+;;     (haskell :variables
+;;              haskell-completion-backend 'lsp
+;;              haskell-enable-hindent t)
+;;     helm
      imenu-list
      ivy
      lsp
      markdown
-     multiple-cursors
+;;     multiple-cursors
      (org :variables
           org-enable-github-support t
           org-enable-reveal-js-support t
@@ -82,14 +81,14 @@ This function should only modify configuration layer settings."
           org-projectile-file "TODOs.org")
 
      osx
-     (python :variables
-             ;;python-backend 'anaconda
-             python-backend 'lsp
-             python-enable-yapf-format-on-save t
-             python-test-runner 'pytest
-             python-sort-imports-on-save t
-             python-fill-column 99)
-     racket
+;;     (python :variables
+;;             ;;python-backend 'anaconda
+;;             python-backend 'lsp
+;;             python-enable-yapf-format-on-save t
+;;             python-test-runner 'pytest
+;;             python-sort-imports-on-save t
+;;             python-fill-column 99)
+;;     racket
      (rust :variables
            rust-backend 'lsp
            rust-format-on-save t
@@ -103,10 +102,7 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      syntax-checking
      parinfer
-     (ranger :variables
-        ranger-show-preview t
-     )
-     themes-megapack
+     ;;themes-megapack
      theming
      (treemacs :variables
         treemacs-use-follow-mode 'tag
@@ -114,8 +110,11 @@ This function should only modify configuration layer settings."
         treemacs-use-all-the-icons-theme t
         treemacs-lock-width t
      )
-     version-control
-     yaml)
+     (version-control :variables
+        version-control-diff-tool 'diff-hl
+        version-control-diff-side 'left
+        )
+     )
 
 
    ;; List of additional packages that will be installed without being wrapped
