@@ -18,6 +18,7 @@
     tool = vimdiff
 	algorithm = patience
 [merge]
+    conflictstyle = diff3
     tool = vimdiff
 [push]
 	default = simple
@@ -25,5 +26,6 @@
 	fetchJobs = 10
 [core]
     pager = diff-highlight | less
+    ignorecase = false
 [commit]
 	gpgsign = true

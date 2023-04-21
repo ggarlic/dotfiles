@@ -41,11 +41,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH=$PATH:/usr/local/sbin
 
     # homebrew bottles
-    #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles 
+    #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles 
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 
     # homebrew racket
-    append_path "/Applications/Racket v8.7/bin"
+    append_path "/Applications/Racket v8.8/bin"
 
     # perl for mac
     append_path $HOME/.perl5/bin

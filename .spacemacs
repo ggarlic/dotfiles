@@ -668,6 +668,8 @@ before packages are loaded."
   (if (eq system-type 'darwin)
       (mac-auto-operator-composition-mode))
 
+  (setq-default evil-insert-state-cursor 'box)
+
   (with-eval-after-load 'org
       (setq org-directory "~/Documents/org")
       (setq org-default-notes-file (concat org-directory "/notes.org"))

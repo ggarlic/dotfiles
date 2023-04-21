@@ -3,28 +3,24 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
 "Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
-"Plug 'terryma/vim-multiple-cursors'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
-Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/a.vim'
 Plug 'kshenoy/vim-signature'
-"Plug 'justinmk/vim-gtfo'
 Plug 'cespare/vim-toml'
-Plug 'zaiste/tmux.vim'
 Plug 'jrosiek/vim-mark'
 Plug 'cohama/lexima.vim'
 Plug 'Yggdroot/indentLine'
@@ -35,15 +31,14 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'Shougo/echodoc.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'solarnz/thrift.vim'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 
 " python
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
-Plug 'lepture/vim-jinja'
+Plug 'lepture/vim-jinja', {'for':'python'}
 
 " always the last one
 Plug 'ryanoasis/vim-devicons'
@@ -281,14 +276,9 @@ let g:rainbow_conf = {
 \}
 
 "vim-go
-let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
-let g:go_info_mode = 'gopls'
 let g:go_addtags_transform = "snakecase"
-let g:go_def_mode='gopls'
-let g:go_fill_struct_mode='gopls'
 let g:go_metalinter_command='golangci-lint'
-let g:go_referrers_mode = 'gopls'
 if has('balloon_eval_term')
   au FileType go setlocal balloonevalterm
   au FileType go setlocal balloonexpr=go#tool#DescribeBalloon()
