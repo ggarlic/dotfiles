@@ -27,7 +27,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-ask-for-lazy-installation t
 
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+   ;; Paths must have a trailing slash (i.e. "~/.mycontribs/")
    dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load.
@@ -125,7 +125,14 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '( ef-themes
+                                      (rose-pine-emacs :location (recipe 
+                                                                  :fetcher github
+                                                                  :repo "thongpv87/rose-pine-emacs")))
+                                                          
+                                       
+                                      
+    
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -298,7 +305,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gruvbox-dark-medium
+   dotspacemacs-themes '(
+                         (ef-cherie :location local)
+                         (rose-pine-moon :location local)
+                         gruvbox-dark-medium
                          spacemacs-dark
                          spacemacs-light)
 
@@ -425,12 +435,12 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
-   ;; (default nil) (Emacs 24.4+ only)
+   ;; (default t) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
-   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
-   ;; borderless fullscreen. (default nil)
+   ;; variable with `dotspacemacs-maximized-at-startup' to obtain fullscreen
+   ;; without external boxes. Also disables the internal border. (default nil)
    dotspacemacs-undecorated-at-startup nil
 
    ;; A value from the range (0..100), in increasing opacity, which describes
@@ -608,8 +618,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env)
-)
+  (spacemacs/load-spacemacs-env))
+
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -622,27 +632,13 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq theming-modifications
         '((gruvbox-dark-medium
            (font-lock-string-face :slant italic)
-           (font-lock-comment-face :slant italic))))
-
-  (setq configuration-layer-elpa-archives
-   '(
-       ;;   ("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-       ;;   ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-       ;;   ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-       ("melpa-cn". "http://mirrors.ustc.edu.cn/elpa/melpa/")
-       ("org-cn". "http://mirrors.ustc.edu.cn/elpa/org/")
-       ("gnu-cn". "http://mirrors.ustc.edu.cn/elpa/gnu/")
-       ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-    )
-  )
-)
+           (font-lock-comment-face :slant italic)))))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
-dump."
-  )
+dump.")
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -657,6 +653,7 @@ before packages are loaded."
         geiser-repl-autodoc-p t
         geiser-repl-history-filename "~/.emacs.d/geiser-history"
         geiser-repl-query-on-kill-p nil)
+  (setq inferior-lisp-program "/usr/local/bin/clisp")
 
   (when (configuration-layer/layer-usedp 'haskell)
     (add-hook 'haskell-interactive-mode-hook
@@ -691,25 +688,15 @@ before packages are loaded."
                   (push file org-agenda-files)))
         (org-projectile-todo-files)))
     (setq org-todo-keywords
-        '((sequence "TODO(T!)" "PENDING(P@)" "DOING(I!)" "|" "DONE(D!)" "CANCELED(C@/!)")))
-  )
+        '((sequence "TODO(T!)" "PENDING(P@)" "DOING(I!)" "|" "DONE(D!)" "CANCELED(C@/!)"))))
+  
   ;; better diff-highlight
   (setq magit-diff-refine-hunk 'all)
   ;; use emacs keybinding
   (with-eval-after-load 'magit
     (define-key magit-status-mode-map
-      (kbd dotspacemacs-leader-key) spacemacs-default-map))
+      (kbd dotspacemacs-leader-key) spacemacs-default-map)))
 
-  ;; ivy-posframe
-  ;;(require 'ivy-posframe)
-  ;;(setq ivy-posframe-parameters
-  ;;     '((left-fringe . 8)
-  ;;        (right-fringe . 8)))
-
-  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-  ;; (ivy-posframe-mode 1)
-
-)
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
@@ -736,3 +723,7 @@ This function is called at the very end of Spacemacs initialization."
  '(font-lock-comment-face ((t (:slant italic))))
  '(font-lock-string-face ((t (:slant italic)))))
 )
+
+
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
