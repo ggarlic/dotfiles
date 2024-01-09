@@ -64,7 +64,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # cli color
     export CLICOLOR=1
     export LSCOLORS=ExFxCxDxBxegedabagacad
-    PS1="\$([[ \$? != 0 ]] && echo \"💥 \")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\")\[\033[1;33m\]\$(git-radar --bash --fetch)\n\[\033[1;33m\]>>>\[\033[0m\]"
+    PS1="\$([[ \$? != 0 ]] && echo \"💥 \")\[\033[1;91m\]\t \[\033[1;92m\]\u\[\033[1;96m\]:\[\033[1;95m\]\w \[\033[1;96m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\")\[\033[1;93m\]\$(git-radar --bash --fetch)\n\[\033[1;93m\]>>>\[\033[0m\]"
 fi
 
 # Change the window title of X terminals
@@ -124,3 +124,9 @@ mkcd(){
 dict () {
     curl dict://dict.org/d:"${1}"
 }
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
+export TERM=xterm-256color

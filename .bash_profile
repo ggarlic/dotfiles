@@ -24,7 +24,12 @@ append_path $GOPATH/bin
 #source <(golangci-lint completion bash) # it's slow for bash initializing
 
 # fzf
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+    [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+   # assume Bash
+    [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+fi
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # rupa/z.sh
@@ -47,7 +52,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 
     # homebrew racket
-    append_path "/Applications/Racket v8.8/bin"
+    append_path "/Applications/Racket v8.11.1/bin"
 
     # perl for mac
     append_path $HOME/.perl5/bin
@@ -55,6 +60,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PERL_LOCAL_LIB_ROOT="$HOME/.perl5"
     export PERL_MB_OPT="--install_base \"$HOME/.perl5\""
     export PERL_MM_OPT="INSTALL_BASE=$HOME/.perl5"
+
+    export GOPROXY=http://goproxy.intra.xiaojukeji.com,direct
+    export GOSUMDB=off
+    export GO111MODULE=auto
+
+    # java
+    export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_331.jdk/Contents/Home'
+    append_path $JAVA_HOME/bin
+    export MAVEN_HOME=/Users/ggarlic/.local/bin/apache-maven-3.6.3
+    append_path $MAVEN_HOME/bin
 
     # rpc-tools
     append_path $HOME/.rpc-tools
