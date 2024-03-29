@@ -55,10 +55,13 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     export GIT_PS1_SHOWCONFLICTSTATE=true
     PS1="\$([[ \$? != 0 ]] && echo \"\[\033[1;37m\][\[\033[1;31m\]💥\[\033[1;37m\]]\")\[\033[1;31m\]\t \[\033[1;32m\]\u\[\033[1;36m\]:\[\033[1;35m\]\w \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /usr/bin/sed \"s: ::g\") \[\033[1;33m\]\$(__git_ps1 \"(%s)\")\n\[\033[1;33m\]>>>\[\033[0m\]"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+
+    # homebrew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     # bash completion
-    if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-        export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-        . "/usr/local/etc/profile.d/bash_completion.sh"
+    if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+        export BASH_COMPLETION_COMPAT_DIR="/opt/homebrew/etc/bash_completion.d"
+        . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     fi
 
     # cli color

@@ -43,7 +43,7 @@ append_path $HOME/.cabal/bin
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
-    export PATH=$PATH:/usr/local/sbin
+    export PATH=/opt/homebrew/bin:$PATH:/usr/local/sbin
 
     # homebrew bottles
     #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles 
@@ -52,7 +52,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 
     # homebrew racket
-    append_path "/Applications/Racket v8.11.1/bin"
+    append_path "/Applications/Racket v8.12/bin"
 
     # perl for mac
     append_path $HOME/.perl5/bin

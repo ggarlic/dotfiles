@@ -78,3 +78,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (set-formatter! 'gofmt '("goimports"))
+(after! lsp-mode
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/3577#issuecomment-1709232622
+  (delete 'lsp-terraform lsp-client-packages))
+
+(pushnew! initial-frame-alist '(width . 100) '(height . 40))

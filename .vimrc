@@ -29,7 +29,7 @@ Plug 'mhinz/vim-startify'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'Shougo/echodoc.vim'
-Plug '/usr/local/opt/fzf'
+Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 
@@ -98,6 +98,7 @@ set cursorline
 syntax enable 
 syntax on 
 set scrolloff=3
+set sms
 set go-=m
 set go-=T
 set go-=r
@@ -246,6 +247,7 @@ let g:ycm_language_server =
   \   'filetypes': [ 'c', 'cpp', 'cuda', 'objc', 'objcpp' ],
   \   'project_root_files': [ '.ccls-root', 'compile_commands.json' ]
   \ }]
+"let g:ycm_enable_inlay_hints = 1
 let g:ycm_auto_trigger = 1
 
 "ultisnips
