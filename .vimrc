@@ -7,7 +7,7 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
+Plug 'ycm-core/YouCompleteMe', {'do': 'CXX=clang++ CC=clang python3 install.py --clang-completer', 'for': ['c', 'cpp', 'python', 'go']}
 "Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -29,7 +29,7 @@ Plug 'mhinz/vim-startify'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'Shougo/echodoc.vim'
-Plug '/opt/homebrew/opt/fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 
@@ -249,6 +249,10 @@ let g:ycm_language_server =
   \ }]
 "let g:ycm_enable_inlay_hints = 1
 let g:ycm_auto_trigger = 1
+nmap <leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+nmap <leader>yfd <Plug>(YCMFindSymbolInDocument)
+
+
 
 "ultisnips
 " we can't use <tab> as our snippet key since we use that with neocomplcache
