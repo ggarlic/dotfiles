@@ -83,3 +83,5 @@
   (delete 'lsp-terraform lsp-client-packages))
 
 (pushnew! initial-frame-alist '(width . 100) '(height . 40))
+
+(setq-default evil-insert-state-cursor 'box)
