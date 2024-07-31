@@ -56,6 +56,7 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set completeopt=longest,menu
+set completeopt+=fuzzy
 set display=lastline
 set lazyredraw
 set nocompatible
@@ -106,6 +107,7 @@ set go-=L
 set ruler
 set title
 set wildmenu
+set wildoptions+=fuzzy
 set number
 set linebreak
 set cc=80
