@@ -96,8 +96,8 @@ endif
 """""""""""""""""""""""""""""""""""
 set t_Co=256
 set cursorline
-syntax enable 
-syntax on 
+syntax enable
+syntax on
 set scrolloff=3
 set sms
 set go-=m
@@ -234,7 +234,7 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_goto_buffer_command='vertical-split'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 1
-let g:ycm_filetype_whitelist = { 
+let g:ycm_filetype_whitelist = {
     \ 'c': 1 ,
     \ 'cpp': 1,
     \ 'python': 1,
@@ -278,9 +278,9 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\	'separately': {
-\		'nerdtree': 0,
-\	}
+\    'separately': {
+\        'nerdtree': 0,
+\    }
 \}
 
 "vim-go
@@ -330,6 +330,9 @@ au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 "vim-airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -394,9 +397,9 @@ let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
 let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1, 'BufTag': 0}
 let g:Lf_WildIgnore = {
-					\ 'dir': ['.svn','.git','.hg'],
-					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-					\ }
+                    \ 'dir': ['.svn','.git','.hg'],
+                    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+                    \ }
 let g:Lf_NormalMap = {
     \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
     \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -434,3 +437,11 @@ let g:ale_go_golangci_lint_package=1
 
 "vim-devicons
 let g:webdevicons_conceal_nerdtree_brackets=1
+
+
+" url escape/unescape
+vnoremap <leader>en :!python3 -c 'import sys; from urllib import parse; print(parse.quote_plus(sys.stdin.read().strip()))'<cr>
+vnoremap <leader>de :!python3 -c 'import sys; from urllib import parse; print(parse.unquote_plus(sys.stdin.read().strip()))'<cr>
+
+" add comment plugin, since vim v9.1.0375
+packadd! comment
